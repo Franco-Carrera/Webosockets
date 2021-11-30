@@ -1,0 +1,10 @@
+{{#if products}}
+  {{#each products}}
+    <div class="containTemplate">
+      <p>
+        {{this.name}}
+      </p>
+      <img class="imgTemplate" src={{this.thumbnail}} />
+    </div>
+  {{/each}}
+{{/if}}

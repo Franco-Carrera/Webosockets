@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "adopted": false
+  },
+  {
+    "id": 2,
+    "adopted": false
+  },
+  {
+    "id": 3,
+    "adopted": false
+  },
+  {
+    "id": 4,
+    "name": "¡Android",
+    "specie": "tecnology",
+    "price": "78780",
+    "thumbnail": "http://localhost:8080/images/1638245220753placeimg_640_480_nature.jpg",
+    "adopted": false
+  },
+  {
+    "id": 5,
+    "name": "Mouse",
+    "specie": "tecnology",
+    "price": "$1333",
+    "thumbnail": "http://localhost:8080/images/1638248316250mouse.jpg",
+    "adopted": false
+  },
+  {
+    "id": 6,
+    "name": "IOS",
+    "specie": "tecnology",
+    "price": "$50.000",
+    "thumbnail": "http://localhost:8080/images/1638248614272notebook.jpg",
+    "adopted": false
+  }
+]

@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "name": "Federico",
+    "last_name": "Ledesma",
+    "age": 40,
+    "hasPet": false
+  },
+  {
+    "id": 2,
+    "name": "Hernan",
+    "last_name": "Pulitsz",
+    "age": 26,
+    "hasPet": false
+  },
+  {
+    "id": 3,
+    "name": "Emilia",
+    "last_name": "Sales",
+    "age": 22,
+    "hasPet": false
+  },
+  {
+    "id": 4,
+    "name": "Tony",
+    "last_name": "Stark",
+    "age": 34,
+    "hasPet": false
+  },
+  {
+    "id": 5,
+    "name": "Amy",
+    "last_name": "Brito",
+    "age": 35,
+    "hasPet": false
+  },
+  {
+    "id": 6,
+    "name": "Juan",
+    "last_name": "Mendez",
+    "age": 40,
+    "hasPet": false
+  },
+  {
+    "id": 7,
+    "name": "Bruce",
+    "last_name": "Banner",
+    "age": 19,
+    "hasPet": false
+  },
+  {
+    "id": 8,
+    "name": "Jon",
+    "last_name": "Herald",
+    "age": 22,
+    "hasPet": false
+  },
+  {
+    "id": 9,
+    "name": "Mario",
+    "last_name": "Benedetti",
+    "age": 28,
+    "hasPet": false
+  },
+  {
+    "id": 10,
+    "name": "Luis",
+    "last_name": "Miguel",
+    "age": 75,
+    "hasPet": false
+  }
+]
