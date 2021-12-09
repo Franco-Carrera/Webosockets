@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "name": "carrito",
+    "adopted": "false"
+  },
+  {
+    "id": 2,
+    "name": "carrito dos",
+    "adopted": "true"
+  },
+  {
+    "id": 3,
+    "name": "carrito tres",
+    "adopted": "false"
+  },
+    {
+    "id": 4,
+    "name": "carrito cuatro",
+    "adopted": "true"
+  }
+]

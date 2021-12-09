@@ -20,7 +20,7 @@ class ContenedorProductos {
         return { status: "success", message: "Producto registrado" };
       } catch {
         return {
-          statis: "error",
+          status: "error",
           message: "No se pudo registrar el producto",
         };
       }

@@ -4,14 +4,17 @@ import cors from "cors";
 import ContenedorProductos from "./classes/ContenedorProductos.js";
 import productsRouter from "./routes/productos.js";
 import usersRouter from "./routes/users.js";
+import cartRouter from "./routes/carrito.js";
 import upload from "./services/uploader.js";
 import __dirname from "./utils.js";
 import { Server } from "socket.io";
 import { authMiddleware } from "./utils.js";
+import Cart from "./classes/ContenedorCarrito.js";
 
 const app = express();
 const PORT = process.env.PORT || 8080;
 const contenedor = new ContenedorProductos();
+const contenedorDos = new Cart();
 
 const server = app.listen(PORT, () => {
   console.log("Listening on port: ", PORT);
@@ -19,11 +22,13 @@ const server = app.listen(PORT, () => {
 export const io = new Server(server);
 
 //handlebars
+/*
 app.engine("handlebars", engine());
 app.set("views", __dirname + "/views");
 app.set("view engine", "handlebars");
-
+*/
 const admin = true;
+
 //// use middlewares
 app.use(express.json());
 app.use(cors());
@@ -36,8 +41,7 @@ app.use((req, res, next) => {
 app.use(express.static(__dirname + "/public"));
 app.use("/api/products", productsRouter);
 app.use("/api/users", usersRouter);
-
-//app.use("/api/carrito", carritoRouter)
+app.use("/api/cart", cartRouter);
 
 app.post("/api/adoption", (req, res) => {
   let userId = parseInt(req.body.uid);
@@ -79,6 +83,19 @@ app.get("/view/products", authMiddleware, (req, res) => {
     res.render("products", preparedObject);
   });
 });
+
+/*
+////get obteniendo en app todo cart
+app.get("/cart", (req, res) => {
+  contenedorDos.getAllCart().then((result) => {
+    let info = result.payload;
+    let preparedObject = {
+      carts: info,
+    };
+    res.render("carts", preparedObject);
+  });
+});
+*/
 
 //socket
 io.on("connection", async (socket) => {
