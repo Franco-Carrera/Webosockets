@@ -14,9 +14,33 @@
     "name": "carrito tres",
     "adopted": "false"
   },
-    {
+  {
     "id": 4,
     "name": "carrito cuatro",
     "adopted": "true"
+  },
+  {
+    "id": 1,
+    "name": "CARRITO FIRST",
+    "price": 1500,
+    "adopted": false
+  },
+  {
+    "id": 2,
+    "name": "CARRITO TWO",
+    "timestamp": "carrito",
+    "productos": [
+      {
+        "id": "1",
+        "timestamp": "producto",
+        "nombre": "teclado",
+        "descripción": "teclado color negro",
+        "codigo": "056460",
+        "foto": "https://http2.mlstatic.com/D_NQ_NP_785902-MLA43268756900_082020-O.jpg",
+        "precio": "4.360",
+        "stock": 8
+      }
+    ],
+    "adopted": false
   }
 ]

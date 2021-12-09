@@ -22,11 +22,11 @@ const server = app.listen(PORT, () => {
 export const io = new Server(server);
 
 //handlebars
-/*
+
 app.engine("handlebars", engine());
 app.set("views", __dirname + "/views");
 app.set("view engine", "handlebars");
-*/
+
 const admin = true;
 
 //// use middlewares
