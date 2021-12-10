@@ -4,7 +4,6 @@ const socket = io();
 
 socket.on("deliverProducts", (data) => {
   let products = data.payload;
-  console.log(products);
   fetch("templates/productTable.handlebars")
     .then((string) => string.text())
     .then((template) => {
@@ -40,7 +39,7 @@ function enviarFormulario(event) {
         icon: "success",
         timer: 2000,
       }).then((result) => {
-        location.href = "/";
+        //location.href = "/";
       });
     });
 }

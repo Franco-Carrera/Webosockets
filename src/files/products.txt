@@ -1,17 +1,5 @@
 [
   {
-    "id": 1,
-    "adopted": false
-  },
-  {
-    "id": 2,
-    "adopted": false
-  },
-  {
-    "id": 3,
-    "adopted": false
-  },
-  {
     "id": 4,
     "name": "¡Android",
     "specie": "tecnology",
@@ -49,6 +37,14 @@
     "specie": "tecnology",
     "price": "5657",
     "thumbnail": "http://localhost:8080/images/1639108127312tienda.png",
+    "adopted": false
+  },
+  {
+    "id": 11,
+    "name": "IOS 2 ",
+    "specie": "tecnology",
+    "price": "5657",
+    "thumbnail": "http://localhost:8080/images/1639156851801illustrator.png",
     "adopted": false
   }
 ]

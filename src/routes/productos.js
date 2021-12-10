@@ -30,8 +30,7 @@ router.post("/", upload.single("image"), (req, res) => {
     res.send(result);
     if (result.status === "success") {
       contenedor.getAllProducts().then((result) => {
-        //console.log(results)
-        console.log(result);
+        // console.log(result);
         io.emit("deliverProducts", result);
       });
     }
