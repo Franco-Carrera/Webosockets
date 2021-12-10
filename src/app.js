@@ -22,7 +22,6 @@ const server = app.listen(PORT, () => {
 export const io = new Server(server);
 
 //handlebars
-
 app.engine("handlebars", engine());
 app.set("views", __dirname + "/views");
 app.set("view engine", "handlebars");
@@ -83,19 +82,6 @@ app.get("/view/products", authMiddleware, (req, res) => {
     res.render("products", preparedObject);
   });
 });
-
-/*
-////get obteniendo en app todo cart
-app.get("/cart", (req, res) => {
-  contenedorDos.getAllCart().then((result) => {
-    let info = result.payload;
-    let preparedObject = {
-      carts: info,
-    };
-    res.render("carts", preparedObject);
-  });
-});
-*/
 
 //socket
 io.on("connection", async (socket) => {

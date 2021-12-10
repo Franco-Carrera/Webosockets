@@ -42,5 +42,13 @@
     "price": "$4.580",
     "thumbnail": "http://localhost:8080/images/1638301145432android.jpg",
     "adopted": false
+  },
+  {
+    "id": 10,
+    "name": "Pruebas Funcionales - Ciclo 1",
+    "specie": "tecnology",
+    "price": "5657",
+    "thumbnail": "http://localhost:8080/images/1639108127312tienda.png",
+    "adopted": false
   }
 ]

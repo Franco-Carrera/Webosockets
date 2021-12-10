@@ -5,6 +5,14 @@ import Cart from "../classes/ContenedorCarrito.js";
 const router = express.Router();
 const contenedorDos = new Cart();
 
+//middleware
+router.use((req, res, next) => {
+  let timestamp = Date.now();
+  let time = new Date(timestamp);
+  console.log("Petición hecha a las: " + time.toTimeString().split(" ")[0]);
+  next();
+});
+
 /////POSTS
 
 ////CREANDO CART
