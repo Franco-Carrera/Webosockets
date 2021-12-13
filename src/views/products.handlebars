@@ -8,12 +8,15 @@
 </div>
 
 <div class="product-container">
-  {{#each products}}
-    <div class="product-card">
-      <p>{{this.title}}</p>
-      <p>{{this.description}}</p>
-      <p>{{this.price}}</p>
-      <img src={{this.thumbnail}} />
-    </div>
-  {{/each}}
+  {{#if products}}
+    {{#each products}}
+      <div class="product-card">
+        <p>{{this.title}}</p>
+        <p>{{this.price}}</p>
+        <img src={{this.thumbnail}} />
+      </div>
+    {{/each}}
+  {{else}}
+    <h2>Not exist products</h2>
+  {{/if}}
 </div>

@@ -8,5 +8,15 @@
     "price": "4545",
     "thumbnail": "http://localhost:8080/images/1639362363663mouse.jpg.jpeg",
     "stock": "3"
+  },
+  {
+    "id": 2,
+    "timestamp": 1639400822163,
+    "title": "micrófono",
+    "description": "",
+    "code": "",
+    "price": "65",
+    "thumbnail": "http://localhost:8080/images/1639400822138micro.jpg.jpeg",
+    "stock": 0
   }
 ]

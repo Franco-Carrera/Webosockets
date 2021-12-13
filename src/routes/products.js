@@ -44,11 +44,9 @@ router.post("/", authMiddleware, upload.single("image"), (req, res) => {
     req.protocol + "://" + req.hostname + ":8080" + "/images/" + file.filename;
   containerProducts.save(product).then((result) => {
     res.send(result);
-    if (result.status === "success") {
-      containerProducts.getAll().then((result) => {
-        io.emit("deliverProducts", result);
-      });
-    }
+    containerProducts.getAll().then((result) => {
+      io.emit("deliverProducts", result);
+    });
   });
 });
 

@@ -19,6 +19,7 @@ router.post("/:cid/products", (req, res) => {
   let productId = parseInt(req.body.id);
   containerCarts.addToCart(cartId, productId).then((result) => {
     res.send(result);
+    console.log(result);
   });
 });
 

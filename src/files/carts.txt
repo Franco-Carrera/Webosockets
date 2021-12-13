@@ -16,11 +16,6 @@
     ]
   },
   {
-    "id": 2,
-    "cartTimestamp": 57682323847,
-    "products": []
-  },
-  {
     "id": 3,
     "cartTimestamp": 9856423702,
     "products": []
@@ -28,11 +23,26 @@
   {
     "id": 4,
     "cartTimestamp": 1639361514828,
-    "products": []
+    "products": [
+      null,
+      null
+    ]
   },
   {
     "id": 5,
     "cartTimestamp": 1639361574058,
-    "products": []
+    "products": [
+      null,
+      {
+        "id": 1,
+        "timestamp": 1639362363679,
+        "title": "df",
+        "description": "Tecnology and Production",
+        "code": "",
+        "price": "4545",
+        "thumbnail": "http://localhost:8080/images/1639362363663mouse.jpg.jpeg",
+        "stock": "3"
+      }
+    ]
   }
 ]
