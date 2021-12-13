@@ -1,25 +1,20 @@
 import express from "express";
 import { engine } from "express-handlebars";
 import cors from "cors";
-import ContenedorProductos from "./classes/ContenedorProductos.js";
-import productsRouter from "./routes/productos.js";
-import usersRouter from "./routes/users.js";
-import cartRouter from "./routes/carrito.js";
+import Container from "./classes/Container.js";
 import upload from "./services/uploader.js";
 import __dirname from "./utils.js";
 import { Server } from "socket.io";
-import { authMiddleware } from "./utils.js";
-import Cart from "./classes/ContenedorCarrito.js";
 
 const app = express();
 const PORT = process.env.PORT || 8080;
-const contenedor = new ContenedorProductos();
-const contenedorDos = new Cart();
-
 const server = app.listen(PORT, () => {
   console.log("Listening on port: ", PORT);
 });
 export const io = new Server(server);
+
+const containerProducts = new Container("products");
+const chatContainer = new Container("chat");
 
 //handlebars
 app.engine("handlebars", engine());
@@ -39,8 +34,13 @@ app.use((req, res, next) => {
 });
 app.use(express.static(__dirname + "/public"));
 app.use("/api/products", productsRouter);
-app.use("/api/users", usersRouter);
-app.use("/api/cart", cartRouter);
+app.use("/api/users", productsRouter);
+app.use("/api/cart", cartsRouter);
+
+app.use(upload.single("image"));
+
+import productsRouter from "./routes/products.js";
+import cartsRouter from "./routes/cart.js";
 
 app.post("/api/adoption", (req, res) => {
   let userId = parseInt(req.body.uid);
@@ -50,34 +50,19 @@ app.post("/api/adoption", (req, res) => {
   });
 });
 
-app.post(
-  "/api/uploadfile",
-  upload.fields([
-    {
-      name: "file",
-      maxCount: 1,
-    },
-    {
-      name: "documents",
-      maxCount: 3,
-    },
-  ]),
-  (req, res) => {
-    const files = req.files;
-    console.log(files);
-    if (!files || files.length === 0) {
-      res.status(500).send({ messsage: "No se subió archivo" });
-    }
-    res.send(files);
+app.post("/api/uploadImage", upload.single("image"), (req, res) => {
+  const image = req.file;
+  if (!image || image.length === 0) {
+    res.status(500).send({ message: "No se subió la imagen" });
   }
-);
+  res.send(image);
+});
 
 /////Get all Products
-app.get("/view/products", authMiddleware, (req, res) => {
-  contenedor.getAllProducts().then((result) => {
-    let info = result.payload;
+app.get("/view/products", (req, res) => {
+  containerProducts.getAll().then((result) => {
     let preparedObject = {
-      products: info,
+      products: result,
     };
     res.render("products", preparedObject);
   });
@@ -85,7 +70,15 @@ app.get("/view/products", authMiddleware, (req, res) => {
 
 //socket
 io.on("connection", async (socket) => {
-  console.log(`El socket ${socket.id} se ha conetado`);
-  let products = await contenedor.getAllProducts();
+  console.log(`the socket ${socket.id} is connected`);
+  let products = await containerProducts.getAll();
   socket.emit("deliverProducts", products);
 });
+//--------- end socket ----------------//
+
+app.use("/*", (req, res) =>
+  res.send({
+    error: -2,
+    description: `Path ${req.originalUrl} and method ${req.method} aren't implemented`,
+  })
+);

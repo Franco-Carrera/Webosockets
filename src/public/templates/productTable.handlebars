@@ -2,7 +2,13 @@
   {{#each products}}
     <div class="containTemplate">
       <p>
-        {{this.name}}
+        {{this.title}}
+      </p>
+      <p>
+        price: ${{this.price}}
+      </p>
+      <p>
+        {{this.description}}
       </p>
       <img class="imgTemplate" src={{this.thumbnail}} />
     </div>

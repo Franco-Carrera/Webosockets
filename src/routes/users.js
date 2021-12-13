@@ -1,5 +1,5 @@
 import express from "express";
-import ContenedorProductos from "../classes/ContenedorProductos.js";
+import ContenedorProductos from "../classes/Container.js";
 const router = express.Router();
 const contenedor = new ContenedorProductos();
 

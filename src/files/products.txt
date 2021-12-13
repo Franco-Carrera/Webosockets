@@ -1,50 +1,12 @@
 [
   {
-    "id": 4,
-    "name": "¡Android",
-    "specie": "tecnology",
-    "price": "78780",
-    "thumbnail": "http://localhost:8080/images/1638245220753placeimg_640_480_nature.jpg",
-    "adopted": false
-  },
-  {
-    "id": 5,
-    "name": "Mouse",
-    "specie": "tecnology",
-    "price": "$1333",
-    "thumbnail": "http://localhost:8080/images/1638248316250mouse.jpg",
-    "adopted": false
-  },
-  {
-    "id": 6,
-    "name": "IOS",
-    "specie": "tecnology",
-    "price": "$50.000",
-    "thumbnail": "http://localhost:8080/images/1638248614272notebook.jpg",
-    "adopted": false
-  },
-  {
-    "id": 9,
-    "name": "¡Android",
-    "specie": "tecnology",
-    "price": "$4.580",
-    "thumbnail": "http://localhost:8080/images/1638301145432android.jpg",
-    "adopted": false
-  },
-  {
-    "id": 10,
-    "name": "Pruebas Funcionales - Ciclo 1",
-    "specie": "tecnology",
-    "price": "5657",
-    "thumbnail": "http://localhost:8080/images/1639108127312tienda.png",
-    "adopted": false
-  },
-  {
-    "id": 11,
-    "name": "IOS 2 ",
-    "specie": "tecnology",
-    "price": "5657",
-    "thumbnail": "http://localhost:8080/images/1639156851801illustrator.png",
-    "adopted": false
+    "id": 1,
+    "timestamp": 1639362363679,
+    "title": "df",
+    "description": "Tecnology and Production",
+    "code": "",
+    "price": "4545",
+    "thumbnail": "http://localhost:8080/images/1639362363663mouse.jpg.jpeg",
+    "stock": "3"
   }
 ]

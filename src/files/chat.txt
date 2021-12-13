@@ -1,0 +1,22 @@
+[ 
+  {
+    "user": "Federico",
+    "message": "Buenas",
+    "date": "12/12/2021 22:42:40",
+  },
+  {
+    "user": "Hernan",
+    "message": "Qué tal va todo",
+    "date": "12/12/2021 22:43:46",
+  },
+  {
+    "user": "Emilia",
+    "message": "viva la vida",
+    "date": "12/12/2021 22:43:57",
+  },
+  {
+    "user": "Tony",
+    "message": "hoy es un gran dia",
+    "date": "12/12/2021 22:44:10",
+  },
+]

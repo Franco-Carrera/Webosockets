@@ -3,13 +3,12 @@ const socket = io();
 //-------------------- Eventos de Socket ----------------
 
 socket.on("deliverProducts", (data) => {
-  let products = data.payload;
   fetch("templates/productTable.handlebars")
     .then((string) => string.text())
     .then((template) => {
       const processedTemplate = Handlebars.compile(template);
       const templateObject = {
-        products: products,
+        products: data,
       };
       const html = processedTemplate(templateObject);
       let div = document.getElementById("productTable");
@@ -17,9 +16,7 @@ socket.on("deliverProducts", (data) => {
     });
 });
 
-// ------------------- ----------------------------
-
-document.addEventListener("submit", enviarFormulario);
+// ------------------- --------Fin Events Socket--------------------
 
 function enviarFormulario(event) {
   event.preventDefault();
@@ -39,7 +36,7 @@ function enviarFormulario(event) {
         icon: "success",
         timer: 2000,
       }).then((result) => {
-        //location.href = "/";
+        location.href = "/";
       });
     });
 }
@@ -53,3 +50,5 @@ document.getElementById("image").onchange = (e) => {
 
   read.readAsDataURL(e.target.files[0]);
 };
+
+document.addEventListener("submit", enviarFormulario);
