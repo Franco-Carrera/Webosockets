@@ -1,234 +1,146 @@
 import fs from "fs";
-import __dirname from "../utils.js";
 
 class ContenedorProductos {
-  constructor(archiveName) {
-    this.archiveName = archiveName;
+  constructor() {
+    this.fileLocation = "src/files/products.txt";
   }
 
-  async saveChat(message) {
+  async getById(id) {
     try {
-      let data = await fs.promises.readFile(
-        __dirname + `/files/${this.archiveName}.txt`,
+      if (!id) throw new Error("Missing 'id' parameter!");
+      const productsFile = await fs.promises.readFile(
+        this.fileLocation,
         "utf-8"
       );
-      let chat = JSON.parse(data);
-      chat.push(message);
-      await fs.promises.writeFile(
-        __dirname + `/files/${this.archiveName}.txt`,
-        JSON.stringify(chat, null, 2)
-      );
-      io.emit("messagelog", chat);
+      if (!productsFile) throw new Error("The document is empty!");
+
+      const product = JSON.parse(productsFile).find((e) => e.id === id);
+      if (!product) throw new Error("Product not found.");
+      return { status: "success", payload: product };
     } catch (err) {
-      try {
-        await fs.promises.writeFile(
-          __dirname + `/files/${this.archiveName}.txt`,
-          JSON.stringify([data], null, 2)
-        );
-        io.emit("messagelog", [message]);
-      } catch (err) {
-        console.log(`No se pudo escribir el archivo ${err}`);
-        return { status: "error", message: "Error al agregar chat " + err };
-      }
+      console.log(`Read file error: ${err.message}`);
+      return { status: "error", message: "Product not found." };
     }
   }
-  async save(product) {
+
+  async save(item) {
     try {
-      let data = await fs.promises.readFile(
-        __dirname + `/files/${this.archiveName}.txt`,
+      if (Object.keys(item).length === 0)
+        throw new Error("Missing or empty 'item' parameter!");
+
+      const productsFile = await fs.promises.readFile(
+        this.fileLocation,
         "utf-8"
       );
-      let products = JSON.parse(data);
+      let products = productsFile ? JSON.parse(productsFile) : [];
 
-      if (products.some((prod) => prod.title === product.title)) {
-        console.log(
-          `${JSON.stringify(product.title)} ya existe en ${this.archiveName}`
-        );
-        return { status: "error", message: "Este producto ya existe" };
-      } else {
-        let dataProduct = Object.assign({
-          id: products.length + 1,
-          timestamp: Date.now(),
-          title: product.title,
-          description: product.description || "",
-          code: product.code || "",
-          price: product.price,
-          thumbnail: product.thumbnail,
-          stock: product.stock || 0,
-        });
+      const hasProduct = products.find((e) => e.name === item.name);
+      if (hasProduct)
+        throw new Error("The product already exists with the same name.");
 
-        products.push(dataProduct);
-        try {
-          await fs.promises.writeFile(
-            __dirname + `/files/${this.archiveName}.txt`,
-            JSON.stringify(products, null, 2)
-          );
-          console.log(
-            `${product.title} fue agregado a ${__dirname}/files/${this.archiveName}.txt`
-          );
-          return { status: "success", message: "Producto Agregado" };
-        } catch (err) {
-          console.log(`No se pudo escribir el archivo ${err}`);
-          return {
-            status: "error",
-            message: "Error al agregar producto " + err,
-          };
-        }
-      }
-    } catch (err) {
-      let dataProduct = Object.assign({
+      const product = {
         id: 1,
+        name: item.name,
+        description: item.description,
+        code: item.code,
         timestamp: Date.now(),
-        title: product.title,
-        description: product.description || "",
-        code: product.code || "",
-        price: product.price,
-        thumbnail: product.thumbnail,
-        stock: product.stock || 0,
-      });
-      try {
-        await fs.promises.writeFile(
-          __dirname + `/files/${this.archiveName}.txt`,
-          JSON.stringify([dataProduct], null, 2)
-        );
-        console.log(
-          `Se creó ${
-            __dirname + `/files/${this.archiveName}.txt`
-          } y se agregó ${product.title}`
-        );
-        return {
-          status: "success",
-          message: `Se creó ${__dirname}/files/${this.archiveName}.txt y se agregó ${product.title}`,
-        };
-      } catch (err) {
-        console.log(err);
-        return { status: "error", message: "Error al agregar producto " + err };
+        price: parseInt(item.price),
+        stock: parseInt(item.stock),
+        picture: item.picture,
+      };
+
+      if (products.length > 0) {
+        const ids = products.map((product) => product.id);
+        const maxId = Math.max(...ids);
+        product.id = maxId + 1;
       }
+
+      products = [...products, product];
+
+      await fs.promises.writeFile(
+        this.fileLocation,
+        JSON.stringify(products, null, 2)
+      );
+      return { status: "success", payload: product };
+    } catch (err) {
+      console.log(`Save file error: ${err.message}`);
+      return { status: "error", message: "Save product error." };
     }
   }
-  async getById(idNumber) {
+
+  async updateById(id, item) {
     try {
-      let data = await fs.promises.readFile(
-        __dirname + `/files/${this.archiveName}.txt`,
+      if (!id || Object.keys(item).length === 0)
+        throw new Error("Missing or empty 'id' or body parameter!");
+      const productsFile = await fs.promises.readFile(
+        this.fileLocation,
         "utf-8"
       );
-      let products = JSON.parse(data);
+      if (!productsFile) throw new Error("The document is empty!");
+      let products = productsFile ? JSON.parse(productsFile) : [];
 
-      let searchedProduct = products.find((prod) => prod.id === idNumber);
+      let product = products.find((e) => e.id === id);
+      if (!product) throw new Error("Product not found.");
+      products = products.filter((e) => e.id !== id);
 
-      if (searchedProduct) {
-        return searchedProduct;
-      } else {
-        console.log(null);
-        return null;
-      }
+      product = {
+        ...product,
+        name: item.name,
+        description: item.description,
+        code: item.code,
+        timestamp: item.timestamp,
+        price: parseInt(item.price),
+        stock: parseInt(item.stock),
+        picture: item.picture,
+      };
+
+      products = [...products, product];
+      await fs.promises.writeFile(
+        this.fileLocation,
+        JSON.stringify(products, null, 2)
+      );
+      return { status: "success", message: "Product updated successfully." };
     } catch (err) {
-      console.log(err);
+      console.log(`Save file error: ${err.message}`);
+      return { status: "error", message: "Save product error." };
+    }
+  }
+
+  async deleteById(id) {
+    try {
+      if (!id) throw new Error("Missing 'id' parameter!");
+      const productsFile = await fs.promises.readFile(
+        this.fileLocation,
+        "utf-8"
+      );
+      const products = productsFile ? JSON.parse(productsFile) : [];
+
+      const product = products.find((e) => e.id === id);
+      if (!product) throw new Error("Product not found.");
+
+      let newProducts = products.filter((e) => e.id !== id);
+      if (newProducts.length === 0) newProducts = "";
+      else newProducts = JSON.stringify(newProducts);
+
+      await fs.promises.writeFile(this.fileLocation, newProducts);
+      return { status: "success", message: "Product deleted successfully." };
+    } catch (err) {
+      console.log(`Save file error: ${err.message}`);
+      return { status: "error", message: "Delete product error." };
     }
   }
 
   async getAll() {
     try {
-      let data = await fs.promises.readFile(
-        __dirname + `/files/${this.archiveName}.txt`,
+      const productsFile = await fs.promises.readFile(
+        this.fileLocation,
         "utf-8"
       );
-      let products = JSON.parse(data);
-      return products;
+      if (!productsFile) throw new Error("The document is empty!");
+      return { status: "success", payload: JSON.parse(productsFile) };
     } catch (err) {
-      console.log(
-        `Posiblemente no hay productos en ${__dirname}/files/${this.archiveName}.txt - ${err}`
-      );
-    }
-  }
-  async updateProduct(id, body) {
-    try {
-      let data = await fs.promises.readFile(
-        __dirname + `/files/${this.archiveName}.txt`,
-        "utf-8"
-      );
-      let products = JSON.parse(data);
-      if (!products.some((pt) => pt.id === id))
-        return {
-          status: "error",
-          message: "No hay productos con el id especificado",
-        };
-      let result = products.map((product) => {
-        if (product.id === id) {
-          body = Object.assign(body);
-          body = Object.assign({ id: product.id, ...body });
-          return body;
-        } else {
-          return product;
-        }
-      });
-      try {
-        await fs.promises.writeFile(
-          __dirname + `/files/${this.archiveName}.txt`,
-          JSON.stringify(result, null, 2)
-        );
-        return { status: "success", message: "Producto actualizado" };
-      } catch {
-        return { status: "error", message: "Error al actualizar el producto" };
-      }
-    } catch (error) {
-      return {
-        status: "error",
-        message: "Fallo al actualizar el producto: " + error,
-      };
-    }
-  }
-  async deleteById(idNumber) {
-    try {
-      let data = await fs.promises.readFile(
-        __dirname + `/files/${this.archiveName}.txt`,
-        "utf-8"
-      );
-      let products = JSON.parse(data);
-
-      let index = products.findIndex((prod) => prod.id === idNumber);
-      let deletedProduct = products.find((prod) => prod.id === idNumber);
-
-      if (index > -1) {
-        products.splice(index, 1);
-        try {
-          await fs.promises.writeFile(
-            __dirname + `/files/${this.archiveName}.txt`,
-            JSON.stringify(products, null, 2)
-          );
-          console.log(
-            `Se eliminó ${deletedProduct.title} de ${__dirname}/files/${this.archiveName}.txt`
-          );
-          return { status: "success", message: "Producto eliminado" };
-        } catch (err) {
-          console.log(err);
-        }
-      } else {
-        console.log(`Error: no existe un producto con esa Id`);
-        return {
-          status: "error",
-          message: "Error: no existe un producto con esa Id",
-        };
-      }
-    } catch (err) {
-      console.log(err);
-      return {
-        status: "error",
-        message: "Fallo al eliminar el producto " + err,
-      };
-    }
-  }
-  async deleteAll() {
-    try {
-      await fs.promises.writeFile(
-        __dirname + `/files/${this.archiveName}.txt`,
-        []
-      );
-      console.log(
-        `Se eliminó todos los productos de ${__dirname}/files/${this.archiveName}.txt`
-      );
-    } catch (err) {
-      console.log(err);
+      console.log(`Read file error: ${err.message}`);
+      return { status: "error", message: err.message };
     }
   }
 }

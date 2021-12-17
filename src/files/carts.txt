@@ -16,33 +16,29 @@
     ]
   },
   {
+    "id": 2,
+    "timestamp": 1639695434063,
+    "products": [
+      {
+        "id": 2,
+        "timestamp": 1639400822163,
+        "title": "micrófono",
+        "description": "",
+        "code": "",
+        "price": "65",
+        "thumbnail": "http://localhost:8080/images/1639400822138micro.jpg.jpeg",
+        "stock": 0
+      }
+    ]
+  },
+  {
     "id": 3,
-    "cartTimestamp": 9856423702,
+    "timestamp": 1639696496432,
     "products": []
   },
   {
     "id": 4,
-    "cartTimestamp": 1639361514828,
-    "products": [
-      null,
-      null
-    ]
-  },
-  {
-    "id": 5,
-    "cartTimestamp": 1639361574058,
-    "products": [
-      null,
-      {
-        "id": 1,
-        "timestamp": 1639362363679,
-        "title": "df",
-        "description": "Tecnology and Production",
-        "code": "",
-        "price": "4545",
-        "thumbnail": "http://localhost:8080/images/1639362363663mouse.jpg.jpeg",
-        "stock": "3"
-      }
-    ]
+    "timestamp": 1639701900360,
+    "products": []
   }
 ]

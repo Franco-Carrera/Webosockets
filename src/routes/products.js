@@ -1,10 +1,9 @@
 import express from "express";
-const router = express.Router();
+import Container from "../classes/Container.js";
 import upload from "../services/uploader.js";
-import { io } from "../app.js";
 import { authMiddleware } from "../utils.js";
 
-import Container from "../classes/Container.js";
+const router = express.Router();
 const containerProducts = new Container("products");
 
 /// GETS
@@ -25,28 +24,22 @@ router.get("/id?", (req, res) => {
   });
 });
 
-router.get("/pid", (req, res) => {
-  let id = parseInt(req.params.id);
+router.get("/:pid", (req, res) => {
+  const id = Number(req.params.pid);
   containerProducts.getById(id).then((result) => {
-    if (result !== null) {
-      res.send(result);
-    } else {
-      res.send({ error: "producto no encontrado" });
-    }
+    if (result.status === "success") res.status(200).json(result);
+    else res.status(500).send(result);
   });
 });
 
 //POSTS
-router.post("/", authMiddleware, upload.single("image"), (req, res) => {
-  let file = req.file;
-  let product = req.body;
-  product.thumbnail =
-    req.protocol + "://" + req.hostname + ":8080" + "/images/" + file.filename;
+router.post("/", authMiddleware, upload.single("picture"), (req, res) => {
+  const file = req.file;
+  const product = req.body;
+  product.picture = `${req.protocol}://${req.hostname}:${process.env.PORT}/uploads/${file.filename}`;
   containerProducts.save(product).then((result) => {
-    res.send(result);
-    containerProducts.getAll().then((result) => {
-      io.emit("deliverProducts", result);
-    });
+    if (result.status === "success") res.status(200).json(result);
+    else res.status(500).send(result);
   });
 });
 
@@ -54,7 +47,7 @@ router.post("/", authMiddleware, upload.single("image"), (req, res) => {
 router.put("/:pid", authMiddleware, (req, res) => {
   let body = req.body;
   let id = parseInt(req.params.pid);
-  containerProducts.updateProduct(id, body).then((result) => {
+  containerProducts.updateById(id, body).then((result) => {
     res.send(result);
   });
 });

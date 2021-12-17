@@ -7,19 +7,19 @@ const containerCarts = new ContainerCart();
 /////POSTS
 //Creando CART
 router.post("/", (req, res) => {
-  containerCarts.createCart().then((result) => {
+  containerCarts.create().then((result) => {
     res.send(result);
     console.log(result);
   });
 });
 
 //Agrega productos al carrito por id
-router.post("/:cid/products", (req, res) => {
-  let cartId = parseInt(req.params.cid);
-  let productId = parseInt(req.body.id);
-  containerCarts.addToCart(cartId, productId).then((result) => {
-    res.send(result);
-    console.log(result);
+router.post("/:id/products/:productId", (req, res) => {
+  const cartId = Number(req.params.id);
+  const productId = Number(req.params.productId);
+  containerCarts.addProduct(cartId, productId).then((result) => {
+    if (result.status === "success") res.status(200).json(result);
+    else res.status(500).send(result);
   });
 });
 
@@ -27,7 +27,7 @@ router.post("/:cid/products", (req, res) => {
 //Vacía por id el carrito
 router.delete("/:cid", (req, res) => {
   let id = parseInt(req.params.cid);
-  containerCarts.deleteById(id).then((result) => {
+  containerCarts.deleteCartById(id).then((result) => {
     res.send(result);
   });
 });

@@ -11,12 +11,14 @@
   },
   {
     "id": 2,
-    "timestamp": 1639400822163,
+    "timestamp": 1639406124675,
     "title": "micrófono",
-    "description": "",
-    "code": "",
-    "price": "65",
+    "description": "ilustrator product put",
+    "code": "hgkor9",
+    "price": 4455,
     "thumbnail": "http://localhost:8080/images/1639400822138micro.jpg.jpeg",
-    "stock": 0
+    "stock": 3,
+    "picture": "http://localhost:8080/images/1639406124672illustrator.png.png",
+    "name": "illustrator"
   }
 ]

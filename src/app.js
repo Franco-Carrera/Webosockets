@@ -2,8 +2,10 @@ import express from "express";
 import { engine } from "express-handlebars";
 import cors from "cors";
 import Container from "./classes/Container.js";
-import upload from "./services/uploader.js";
-import __dirname from "./utils.js";
+import productsRouter from "./routes/products.js";
+import cartsRouter from "./routes/cart.js";
+//import upload from "./services/uploader.js";
+import { __dirname } from "./utils.js";
 import { Server } from "socket.io";
 
 const app = express();
@@ -14,7 +16,6 @@ const server = app.listen(PORT, () => {
 export const io = new Server(server);
 
 const containerProducts = new Container("products");
-const chatContainer = new Container("chat");
 
 //handlebars
 app.engine("handlebars", engine());
@@ -32,32 +33,15 @@ app.use((req, res, next) => {
   req.auth = admin;
   next();
 });
+app.use("/uploads/", express.static(__dirname + "/uploads"));
 app.use(express.static(__dirname + "/public"));
 app.use("/api/products", productsRouter);
+
+///routers
 app.use("/api/users", productsRouter);
 app.use("/api/cart", cartsRouter);
 
-app.use(upload.single("image"));
-
-import productsRouter from "./routes/products.js";
-import cartsRouter from "./routes/cart.js";
-
-app.post("/api/adoption", (req, res) => {
-  let userId = parseInt(req.body.uid);
-  let productId = parseInt(req.body.pid);
-  contenedor.adoptProduct(userId, productId).then((result) => {
-    res.send(result);
-  });
-});
-
-app.post("/api/uploadImage", upload.single("image"), (req, res) => {
-  const image = req.file;
-  if (!image || image.length === 0) {
-    res.status(500).send({ message: "No se subió la imagen" });
-  }
-  res.send(image);
-});
-
+///////////////Sin funcionamiento aún
 /////Get all Products
 app.get("/view/products", (req, res) => {
   containerProducts.getAll().then((result) => {
