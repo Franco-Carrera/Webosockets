@@ -1,4 +1,5 @@
 import multer from "multer";
+import fs from "fs";
 import { __dirname } from "../utils.js";
 
 const getRandomFileName = (file) => {
@@ -21,7 +22,9 @@ const getRandomFileName = (file) => {
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, __dirname + "/uploads");
+    const path = __dirname + "/uploads";
+    fs.mkdirSync(path, { recursive: true });
+    cb(null, path);
   },
   filename: (req, file, cb) => {
     cb(null, getRandomFileName(file));
