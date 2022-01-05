@@ -77,6 +77,15 @@ export default class ProductsMongoDB extends MongoDBContainer {
       )
         throw new Error("Body attributes not formed correctly.");
 
+      const productFound = await ProductModel.findOne({
+        _id: { $ne: productId },
+        name: { $eq: body.name },
+      });
+      if (productFound) throw new Error("Product already exists.");
+
+      body.stock = parseInt(body.stock);
+      body.price = parseInt(body.price);
+
       const product = await ProductModel.findById(productId);
       if (!product) throw new Error("Not exists product.");
 

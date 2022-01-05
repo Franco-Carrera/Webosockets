@@ -44,6 +44,7 @@ export default class CartsMongoDB extends MongoDBContainer {
       return { status: "error", message: err.message };
     }
   }
+
   async getProductsByCartId(cartId) {
     try {
       if (!cartId) throw new Error("Losing 'cartId' attribute!");
@@ -55,7 +56,7 @@ export default class CartsMongoDB extends MongoDBContainer {
 
       return { status: "success", payload: products };
     } catch (err) {
-      console.log(err);
+      console.error(err);
       return { status: "error", message: err.message };
     }
   }

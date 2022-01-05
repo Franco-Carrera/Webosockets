@@ -85,7 +85,7 @@ export default class CartsFile extends FileContainer {
 
   async getProductsByCartId(cartId) {
     try {
-      if (!cartId) throw new Error("Missing 'cartId' parameter!");
+      if (!cartId) throw new Error("Losing 'cartId' attribute!");
       cartId = parseInt(cartId);
 
       const cartsFile = await fs.promises.readFile(this.filePath, "utf-8");

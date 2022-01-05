@@ -11,25 +11,25 @@
     "picture": "http://localhost:undefined/uploads/rY4c0Fe2xIcQOwdv9ny6o.jpg"
   },
   {
-    "id": 1,
-    "name": "Compu",
-    "description": "Compu TOPHOUSE",
-    "category": "category frizz",
-    "code": "ELEG",
-    "timestamp": 1641334491186,
-    "price": 7800,
-    "stock": 98,
-    "picture": "http://localhost:undefined/uploads/slWfeZ5k2LNr5t0GQwnA8.png"
-  },
-  {
     "id": 2,
     "name": "CPU",
-    "description": "CPUTOPHOUSE",
+    "description": "CPU TOPHOUSE",
     "category": "category TOPHOUSE",
-    "code": "OPC32",
+    "code": "OPC31",
     "timestamp": 1641339774349,
-    "price": 19800,
+    "price": 19900,
     "stock": 77,
     "picture": "http://localhost:undefined/uploads/t54l2WQ362sFA50JooAop.jpg"
+  },
+  {
+    "id": 1,
+    "name": "Computadora",
+    "description": "Computadora TOPHOUSE",
+    "category": "category TOPHOUSE",
+    "code": "CTC90",
+    "timestamp": 1641334491186,
+    "price": 37800,
+    "stock": 58,
+    "picture": "http://localhost:undefined/uploads/slWfeZ5k2LNr5t0GQwnA8.png"
   }
 ]
