@@ -1,0 +1,49 @@
+[
+  {
+    "id": 1,
+    "timestamp": 1641276161533,
+    "products": []
+  },
+  {
+    "id": 4,
+    "timestamp": 1641276403461,
+    "products": []
+  },
+  {
+    "id": 6,
+    "timestamp": 1641340852538,
+    "products": []
+  },
+  {
+    "id": 5,
+    "timestamp": 1641276950532,
+    "products": [
+      {
+        "id": 2,
+        "name": "CPU",
+        "description": "CPUTOPHOUSE",
+        "category": "category TOPHOUSE",
+        "code": "OPC32",
+        "timestamp": 1641339774349,
+        "price": 19800,
+        "stock": 77,
+        "picture": "http://localhost:undefined/uploads/t54l2WQ362sFA50JooAop.jpg"
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "timestamp": 1641345749434,
+    "products": []
+  },
+  {
+    "id": 9,
+    "timestamp": 1641346291178,
+    "products": []
+  },
+  {
+    "id": 7,
+    "timestamp": 1641340882733,
+    "products": []
+  }
+]

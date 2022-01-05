@@ -20,6 +20,7 @@ export default class MongoDBContainer {
     } catch (err) {
       console.log(err);
     }
+    console.log("realizado connect");
   }
 
   async deleteFileFromServer(product) {

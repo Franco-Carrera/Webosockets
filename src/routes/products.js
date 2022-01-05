@@ -43,6 +43,7 @@ productsRouter.post(
   (req, res) => {
     const file = req.file;
     const product = req.body;
+    console.log(product);
     product.picture = `${req.protocol}://${req.hostname}:${process.env.PORT}/uploads/${file.filename}`;
     productsService.createProduct(product).then((result) => {
       if (result.status === "success") return res.status(200).json(result);

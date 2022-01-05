@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import products from "./routes/products.js";
-import cartsRouter from "./routes/cart.js";
+import carts from "./routes/carts.js";
 import { __dirname } from "./utils.js";
 
 const app = express();
@@ -25,7 +25,7 @@ app.use(express.static(__dirname + "/public"));
 ///routers ///
 
 app.use("/api/products", products);
-app.use("/api/cart", cartsRouter);
+app.use("/api/cart", carts);
 
 app.use("/*", (req, res) => {
   const date = new Date().toISOString();

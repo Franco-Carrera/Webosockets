@@ -1,9 +1,6 @@
 import MongoDBContainer from "../../containers/mongoDBContainer.js";
 import { ProductModel } from "../models/Product.js";
 
-//Al finalizar conectar MONGO DESDE CONSOLE. ver clase
-//Luego Cart relacionarlo
-
 export default class ProductsMongoDB extends MongoDBContainer {
   async getProducts() {
     try {
@@ -37,11 +34,11 @@ export default class ProductsMongoDB extends MongoDBContainer {
       if (
         !body.name ||
         !body.description ||
-        !body.category ||
         !body.code ||
+        !body.picture ||
         !body.price ||
         !body.stock ||
-        !body.picture
+        !body.category
       )
         throw new Error("Body attributes not formed correctly.");
 
@@ -52,12 +49,17 @@ export default class ProductsMongoDB extends MongoDBContainer {
       body.price = parseInt(body.price);
 
       const createdProduct = await ProductModel.create(body);
-      return { status: "success", payload: createdProduct };
+
+      return {
+        status: "success",
+        message: `Product ID ${createdProduct._id} has been created successfully.`,
+      };
     } catch (err) {
       console.error(err);
       return { status: "error", message: err.message };
     }
   }
+
   async updateProductById(productId, body) {
     try {
       if (!productId || Object.keys(body).length === 0)
@@ -74,6 +76,9 @@ export default class ProductsMongoDB extends MongoDBContainer {
         !body.picture
       )
         throw new Error("Body attributes not formed correctly.");
+
+      const product = await ProductModel.findById(productId);
+      if (!product) throw new Error("Not exists product.");
 
       await ProductModel.findByIdAndUpdate(productId, { $set: body });
 

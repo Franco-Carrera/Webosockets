@@ -36,24 +36,23 @@ export default class ProductsFile extends FileContainer {
   async createProduct(body) {
     try {
       if (Object.keys(body).length === 0)
-        throw new Error("Missing or lost 'body product' parameter");
+        throw new Error("Missing or lost 'body product' parameter!");
 
       if (
         !body.name ||
         !body.description ||
-        !body.category ||
         !body.code ||
+        !body.picture ||
         !body.price ||
         !body.stock ||
-        !body.picture
+        !body.category
       )
         throw new Error("Body attributes not formed correctly.");
 
       const productsFile = await fs.promises.readFile(this.filePath, "utf-8");
       let products = productsFile ? JSON.parse(productsFile) : [];
 
-      let product = products.find((e) => (e.name = body.name));
-
+      let product = products.find((e) => e.name === body.name);
       if (product) throw new Error("Product already exists.");
 
       product = {

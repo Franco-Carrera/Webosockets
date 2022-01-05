@@ -1,6 +1,35 @@
 [
   {
+    "id": null,
+    "name": "Mouse",
+    "description": "Mouse light blue",
+    "category": "New category Mouses",
+    "code": "ALES",
+    "timestamp": 1641331776228,
+    "price": 5060,
+    "stock": 45,
+    "picture": "http://localhost:undefined/uploads/rY4c0Fe2xIcQOwdv9ny6o.jpg"
+  },
+  {
     "id": 1,
-    "code": "HG4859"
+    "name": "Compu",
+    "description": "Compu TOPHOUSE",
+    "category": "category frizz",
+    "code": "ELEG",
+    "timestamp": 1641334491186,
+    "price": 7800,
+    "stock": 98,
+    "picture": "http://localhost:undefined/uploads/slWfeZ5k2LNr5t0GQwnA8.png"
+  },
+  {
+    "id": 2,
+    "name": "CPU",
+    "description": "CPUTOPHOUSE",
+    "category": "category TOPHOUSE",
+    "code": "OPC32",
+    "timestamp": 1641339774349,
+    "price": 19800,
+    "stock": 77,
+    "picture": "http://localhost:undefined/uploads/t54l2WQ362sFA50JooAop.jpg"
   }
 ]
