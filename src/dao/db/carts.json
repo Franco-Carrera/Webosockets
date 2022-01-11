@@ -10,11 +10,6 @@
     "products": []
   },
   {
-    "id": 6,
-    "timestamp": 1641340852538,
-    "products": []
-  },
-  {
     "id": 5,
     "timestamp": 1641276950532,
     "products": [
@@ -37,13 +32,25 @@
     "products": []
   },
   {
-    "id": 9,
-    "timestamp": 1641346291178,
-    "products": []
-  },
-  {
     "id": 7,
     "timestamp": 1641340882733,
     "products": []
+  },
+  {
+    "id": 6,
+    "timestamp": 1641340852538,
+    "products": [
+      {
+        "id": 3,
+        "name": "Camara",
+        "description": "Camera EXO",
+        "category": "Category EXO",
+        "code": "CPI73",
+        "timestamp": 1641480401594,
+        "price": 28770,
+        "stock": 68,
+        "picture": "http://localhost:undefined/uploads/gBPrdm7BJk5HscMnRS9Mo8.jpg"
+      }
+    ]
   }
 ]

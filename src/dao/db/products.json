@@ -31,5 +31,16 @@
     "price": 37800,
     "stock": 58,
     "picture": "http://localhost:undefined/uploads/slWfeZ5k2LNr5t0GQwnA8.png"
+  },
+  {
+    "id": 3,
+    "name": "Camera",
+    "description": "Camera TOPHOUSE",
+    "category": "category TOPHOUSE",
+    "code": "CDI72",
+    "timestamp": 1641334491186,
+    "price": 5800,
+    "stock": 68,
+    "picture": "http://localhost:undefined/uploads/slWfeZ5k2LNr5t0GQwnA8.png"
   }
 ]
