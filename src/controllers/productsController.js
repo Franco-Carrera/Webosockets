@@ -6,7 +6,7 @@ const service = new ProductsService();
 //Service como contenedor de Productos
 export const getProducts = async (req, res) => {
   service
-    .fetchProducts()
+    .getProducts()
     .then((products) => {
       res.status(200).json({ status: "success", payload: products });
     })
@@ -17,9 +17,9 @@ export const getProducts = async (req, res) => {
 };
 
 export const getProduct = async (req, res) => {
-  const productId = parseInt(req.params.id);
+  const productId = req.params.id;
   service
-    .fetchProduct(productId)
+    .getProduct(productId)
     .then((product) => {
       res.status(200).json({ status: "success", payload: product });
     })
@@ -35,10 +35,10 @@ export const createProduct = async (req, res) => {
   product.picture = `${req.protocol}://${req.hostname}:${process.env.PORT}/uploads/${file.filename}`;
   service
     .createProduct(product)
-    .then((product) => {
+    .then((result) => {
       res.status(200).json({
         status: "success",
-        payload: "Product has been created correctly",
+        payload: result,
       });
     })
     .catch((err) => {
@@ -48,14 +48,16 @@ export const createProduct = async (req, res) => {
 };
 
 export const updateProduct = async (req, res) => {
-  const id = parseInt(req.params.id);
+  const productId = req.params.id;
   const product = req.body;
+  const file = req.file;
+  product.picture = `${req.protocol}://${req.hostname}:${process.env.PORT}/uploads/${file.filename}`;
   service
-    .updateProduct(id, product)
-    .then((product) => {
+    .updateProduct(productId, product)
+    .then((result) => {
       res.status(200).json({
         status: "success",
-        payload: "Product has been update correctly",
+        payload: "Product has been update correctly!",
       });
     })
     .catch((err) => {
@@ -65,13 +67,13 @@ export const updateProduct = async (req, res) => {
 };
 
 export const deleteProduct = async (req, res) => {
-  const id = parseInt(req.params.id);
+  const productId = req.params.id;
   service
-    .deleteProduct(id)
-    .then((product) => {
+    .deleteProduct(productId)
+    .then((result) => {
       res.status(200).json({
         status: "success",
-        payload: "Product has been deleted correctly",
+        payload: "Product has been deleted correctly.",
       });
     })
     .catch((err) => {

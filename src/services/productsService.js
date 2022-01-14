@@ -1,92 +1,96 @@
-import { unlink } from "fs/promises";
+import fs from "fs";
 import { __dirname } from "../utils.js";
-import { productsModel } from "../dao/models/products.js";
-//productsModel
+import { ProductModel } from "../dao/models/Product.js";
 
-///Modelo de productos dao.
-// se encuentra mediante función asíncrona fetchProducts
-
-//Relacionar lógica de creación como Profe
-//
-
-//
-//
 export default class ProductsService {
-  /**Aquí se crean productos, luego se comentan para no interceder con el desarrollo */
+  getProducts = async () => await ProductModel.find();
+  //Encontrando todos los productos.
 
-  fetchProducts = async () => {
-    await productsModel.find();
-    try {
-      const products = await select().table("products");
-      return { status: "success", payload: products };
-    } catch (err) {
-      console.log(`Error: ${err}`);
-      return { status: "error", message: err.message };
-    }
-  };
+  getProduct = async (productId) => {
+    if (!productId) throw new Error("Losing 'productId' attribute!"); //Verificamos si no existe productId
 
-  fetchProduct = async (id) => {
-    await productsModel.findById(id);
-    try {
-      const product = await select().table("products").where("id", id).first();
-      if (!product) throw new Error("Product not found.");
-      return { status: "success", payload: product };
-    } catch (err) {
-      console.log(`Error: ${err}`);
-      return { status: "error", message: err.message };
-    }
+    const product = await ProductModel.findById(productId);
+    if (!product) throw new Error("Not exists product.");
+    //Verificamos si no existe product. Al encontrar por id.
+    return product;
   };
 
   createProduct = async (product) => {
-    await productsModel.create(product);
-    try {
-      const exists = await select()
-        .table("products")
-        .where("name", item.name)
-        .first();
-      if (exists) throw new Error("Product already exists.");
-      await insert(item).table("products");
-      return {
-        status: "success",
-        payload: "Product has been created successfully.",
-      };
-    } catch (err) {
-      console.log(`Error: ${err}`);
-      return { status: "error", message: err.message };
-    }
+    if (!Object.keys(product).length === 0)
+      throw new Error("Losing or empty 'body' product.");
+
+    // declaramos keys of Object product
+    let { name, category, description, code, picture, price, stock } = product;
+    if (
+      !name ||
+      !category ||
+      !description ||
+      !code ||
+      !picture ||
+      !price ||
+      !stock
+    )
+      throw new Error("Body product is not correctly");
+
+    //Encuentra un producto Por el nombre
+    const productFound = await ProductModel.findOne({ name: { $eq: name } });
+    if (productFound) throw new Error("Product already exists.");
+
+    //Probamos parsear con Number
+    stock = Number(stock);
+    price = Number(price);
+
+    //Creamos producto pasándole parámetro
+    const productCreated = await ProductModel.create(product);
+    return productCreated;
   };
 
-  updateProduct = async (id, item) => {
-    try {
-      const updated = await update(item).table("products").where("id", id);
-      if (!updated) throw new Error("Product update error.");
-      return {
-        status: "success",
-        payload: "Product has been updated successfully.",
-      };
-    } catch (err) {
-      console.log(`Error: ${err}`);
-      return { status: "error", message: err.message };
-    }
+  updateProduct = async (productId, body) => {
+    if (!productId) throw new Error("Losing 'productId' attribute!");
+
+    const product = await ProductModel.findById(productId);
+    if (!product) throw new Error("Not exists product.");
+    //Mismo proceder que getProduct
+
+    const productFound = await ProductModel.findOne({
+      _id: { $ne: productId },
+      updateName: { $eq: updateName },
+      //Encuentra por _id y por nombre
+    });
+    if (productFound) throw new Error("Product already exists.");
+
+    stock = Number(stock);
+    price = Number(price);
+
+    await ProductModel.findByIdAndUpdate(productId, { $set: body }); //Encuentra por id y modifica, el productId y su cuerpo.
   };
 
-  deleteProduct = async (id) => {
+  deleteProduct = async (productId) => {
+    if (!productId) throw new Error("Losing 'productId' attribute!");
+
+    const product = await ProductModel.findById(productId);
+    if (!product) throw new Error("Not exists product.");
+
+    await ProductModel.findByIdAndDelete(productId);
+    this.deleteFileFromServer(product);
+  };
+
+  deleteFileFromServer = async (product) => {
     try {
-      const row = await select().table("products").where("id", id).first();
-      const product = JSON.parse(JSON.stringify(row));
+      if (!product) throw new Error("Losing 'product' attribute!");
       const picture = product.picture;
       const index = picture.lastIndexOf("/") + 1;
       const pictureName = picture.substring(index, picture.length);
-      await unlink(__dirname + "/uploads/" + pictureName);
-      const deleted = await del().table("products").where("id", id);
-      if (!deleted) throw new Error("Product delete error.");
-      return {
-        status: "success",
-        payload: "Product has been deleted successfully.",
-      };
+      //Nombre de imagen contiene imagen de product, índice y longitud.
+
+      await fs.promises.unlink(__dirname + "/uploads/" + pictureName);
+      // espera a que fs traiga promesa con __dirname como ruta sumada al archivo uploads, con el nombre de imagen.
+
+      console.log(
+        `Picture with ${pictureName} has been deleted successfully from server.`
+      );
     } catch (err) {
-      console.log(`Error: ${err}`);
-      return { status: "error", message: err.message };
+      console.error(err);
     }
   };
 }

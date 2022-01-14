@@ -20,12 +20,18 @@ const getRandomFileName = (file) => {
   return randomUppercaseLowercaseString + extensionFile;
 };
 
+//Se crea random String
+// Se toma el anterior y se crea randomString nuevo con mayus o minus.
+// Se crea la extensión del file con su longitud e índice
+// Por último se suma el file al string creado.
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     const path = __dirname + "/uploads";
     fs.mkdirSync(path, { recursive: true });
     cb(null, path);
   },
+  //Se llama a la función de arriba para crear file
   filename: (req, file, cb) => {
     cb(null, getRandomFileName(file));
   },

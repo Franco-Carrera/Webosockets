@@ -5,7 +5,6 @@ import cartsRouter from "./routes/cart.js";
 import { __dirname } from "./utils.js";
 
 const app = express();
-
 const admin = true;
 
 //// use middlewares //
