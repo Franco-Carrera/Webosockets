@@ -1,0 +1,40 @@
+{
+  "name": "clase_21_22",
+  "version": "1.0.0",
+  "description": "Backend proyect of coderhouse",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "start": "babel-node ./app.js",
+    "dev": "nodemon ./app.js",
+    "build": "babel ./app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Franco-Carrera/Websockets.git"
+  },
+  "keywords": [],
+  "author": "Franco Carrera",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Franco-Carrera/Websockets/issues"
+  },
+  "homepage": "https://github.com/Franco-Carrera/Websockets#readme",
+  "dependencies": {
+    "@babel/cli": "^7.16.8",
+    "@babel/core": "^7.16.7",
+    "@babel/node": "^7.16.8",
+    "@babel/preset-env": "^7.16.8",
+    "babel-plugin-transform-import-meta": "^2.1.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.2",
+    "express-handlebars": "^6.0.2",
+    "normalizr": "^3.6.1",
+    "socket.io": "^4.4.1"
+  },
+  "devDependencies": {
+    "faker": "^5.5.3",
+    "nodemon": "^2.0.15"
+  }
+}
