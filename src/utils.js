@@ -8,10 +8,10 @@ export const authMiddleware = (req, res, next) => {
   if (!req.auth) {
     res.status(403).send({
       error: -1,
-      description: `Path ${req.originalUrl} with method ${req.method} are Not Authorised `,
+      description: `Path ${req.path} with method ${req.method} are Not Authorised `,
     });
     console.log(
-      `Path ${req.originalUrl} with method ${req.method} are Not Authorised `
+      `Path ${req.path} with method ${req.method} are Not Authorised `
     );
   } else {
     next();

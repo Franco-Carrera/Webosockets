@@ -1,11 +1,11 @@
 import multer from "multer";
-import fs from "fs";
 import { __dirname } from "../utils.js";
+import fs from "fs";
 
 const getRandomFileName = (file) => {
   const randomString =
     Math.random().toString(36).substring(2, 15) +
-    Math.random().toString(36).substring(2, 15);
+    Math.random().toString().substring(2, 15);
   const randomUppercaseLowercaseString = randomString
     .split("")
     .map((v) => (Math.round(Math.random()) ? v.toUpperCase() : v.toLowerCase()))
@@ -16,7 +16,6 @@ const getRandomFileName = (file) => {
       file.originalname.lastIndexOf(".") + 1,
       file.originalname.length
     );
-
   return randomUppercaseLowercaseString + extensionFile;
 };
 
@@ -26,6 +25,7 @@ const storage = multer.diskStorage({
     fs.mkdirSync(path, { recursive: true });
     cb(null, path);
   },
+  //Se llama a la función de arriba para crear file
   filename: (req, file, cb) => {
     cb(null, getRandomFileName(file));
   },
