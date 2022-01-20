@@ -124,8 +124,7 @@ socket.on("chats", (data) => {
   element.innerText = `${compression.toFixed(2)}%`;
 
   const divChat = document.getElementById("chats");
-  const message = data
-    .map((chat) => {
+  const message = data.map((chat) => {
       return `<div class='d-flex align-items-center flex-wrap p-2'>
             <img src='${
               chat.author.avatar
