@@ -130,4 +130,5 @@ app.get("/chat", (req, res) => {
 });
 app.get("/logout", (req, res) => {
   res.render("logout");
+  //req.logout()
 });

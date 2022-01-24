@@ -1,7 +1,7 @@
 {
   "name": "clase_23_24",
   "version": "1.0.0",
-  "description": "",
+  "description": "backend proyect",
   "main": "./app.js",
   "type": "module",
   "scripts": {
