@@ -76,3 +76,7 @@ app.get("/fail", (req, res) => {
 app.get("/logout", (req, res) => {
   req.logout();
 });
+
+// app.get("/", (req, res) => {
+//   console.log("hola");
+// });
