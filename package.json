@@ -17,6 +17,10 @@
   "keywords": [],
   "author": "Franco Carrera",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Franco-Carrera/Websockets/issues"
+  },
+  "homepage": "https://github.com/Franco-Carrera/Websockets#readme",
   "dependencies": {
     "@babel/cli": "^7.16.0",
     "@babel/core": "^7.16.5",
@@ -34,7 +38,6 @@
     "socket.io": "^4.4.0"
   },
   "devDependencies": {
-    "nodemon": "2.0.14",
-    "standard": "16.0.4"
+    "nodemon": "2.0.14"
   }
 }
