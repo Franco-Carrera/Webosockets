@@ -7,6 +7,8 @@ import { __dirname } from "./utils.js";
 const app = express();
 const admin = true;
 
+///Terminar actualización rama master, junto con desafío 23 más arreglo chat.
+
 //// use middlewares //
 /// /////////////////////
 app.use(express.json());
