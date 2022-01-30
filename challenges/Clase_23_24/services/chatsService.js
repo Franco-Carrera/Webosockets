@@ -11,9 +11,10 @@ export default class ChatsService {
       return { status: "error", payload: err.message };
     }
   }
+
   async createChat(chat) {
     try {
-      if (!chat) throw new Error("Losing 'chat' attribute.");
+      if (!chat) throw new Error("Losing chat attribute.");
 
       const user = await UserModel.findOne({ email: chat.user.email });
       if (!user) throw new Error("Not found user.");

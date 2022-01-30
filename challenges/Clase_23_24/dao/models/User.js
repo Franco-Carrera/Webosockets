@@ -18,7 +18,7 @@ export const UserSchema = new Schema(
   },
   { timestamps: true }
 );
-//Modelo para inputs del user.
+
 UserSchema.set("toJSON", {
   transform: (document, returnedObject) => {
     returnedObject.id = returnedObject._id;

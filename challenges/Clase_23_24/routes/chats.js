@@ -12,14 +12,13 @@ chats.get("/", (req, res) => {
     else res.status(500).send(result);
   });
 });
-/*
-chats.post('/', (req, res) => {
-  const chat = req.body
-  chatsService.createChat(chat)
-    .then(result => {
-      if (result.status === 'success') res.status(200).json(result)
-      else res.status(500).send(result)
-    })
-})
-*/
+
+// chats.post('/', (req, res) => {
+// chatsService.createChat(chat)
+//   .then(result => {
+//     if (result.status === 'success') res.status(200).json(result)
+//     else res.status(500).send(result)
+//   })
+// })
+
 export default chats;

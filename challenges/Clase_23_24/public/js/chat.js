@@ -18,12 +18,10 @@ fetch("/api/login")
 document.getElementById("message").addEventListener("keyup", (e) => {
   if (e.key === "Enter")
     if (e.target.value) {
-      //Se utiliza string chats para enviar a app
       socket.emit("chats", { message: e.target.value, user: user });
       e.target.value = "";
     }
 });
-//Evento con value del user al tocar tecla Enter.
 
 socket.on("chats", (data) => {
   const divChat = document.getElementById("chats");
@@ -32,11 +30,11 @@ socket.on("chats", (data) => {
       return `<div class='d-flex align-items-center flex-wrap p-2'>
             <img src='${
               chat.user.avatar
-            }' class='rounded pe-2' style='height: 45px; width: auto;' /><span style='color: blue; font-weight: 600;'>${
+            }' class='rounded pe-2' style='height: 47px; width: auto;' /><span style='color: blue; font-weight: 500;'>${
         chat.user.email
       }</span> [<span style='color: brown;'>${formatISODate(
         chat.createdAt
-      )}</span>]: <span style='color: green;font-style: italic;'>${
+      )}</span>]: <span style='color: green;font-style: oblique;'>${
         chat.text
       }</span>
           </div>`;

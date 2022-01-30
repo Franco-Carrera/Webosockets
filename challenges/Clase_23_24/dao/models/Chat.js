@@ -8,7 +8,7 @@ export const ChatSchema = new Schema(
   },
   { timestamps: true }
 );
-//Modelo para el chat contenedor
+
 ChatSchema.set("toJSON", {
   transform: (document, returnedObject) => {
     returnedObject.id = returnedObject._id;

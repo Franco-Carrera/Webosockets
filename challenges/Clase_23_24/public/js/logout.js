@@ -9,5 +9,5 @@ fetch("/api/login")
       fetch("/api/logout", {
         method: "POST",
       }).then(() => location.replace("/"));
-    }, 1800);
+    }, 2000);
   });

@@ -8,12 +8,12 @@ import { __dirname } from "./utils.js";
 import { engine } from "express-handlebars";
 import { Server } from "socket.io";
 import { PORT, MONGO_URI } from "./config/config.js";
-import ChatsService from "./services/ChatsService.js";
+import ChatsService from "./services/chatsService.js";
 import chats from "./routes/chats.js";
 import { UserModel } from "./dao/models/User.js";
-import upload from "./services/uploader.js";
+import uploader from "./services/uploader.js";
 
-const expires = 700;
+const expires = 670;
 const chatsService = new ChatsService();
 
 export const getConnection = async () => {
@@ -31,26 +31,23 @@ export const getConnection = async () => {
 
 const app = express();
 const server = app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`Listening on port: ${PORT}`);
   getConnection();
 });
 
 const io = new Server(server);
 
 io.on("connection", (socket) => {
-  //socket emite, para establecer conexión
-  socket.emit("Welcome, ¡Se ha establecido una conexión con socket.io!");
-  console.log("Cliente conectado");
+  socket.emit("welcome", "¡Conexión establecida con socket.io!");
+  console.log("Cliente conectado.");
   chatsService
     .getChats()
     .then((result) => {
-      //io emite payload de chats.
       io.emit("chats", result.payload);
     })
     .catch((err) => {
       console.error(err);
     });
-  //socket en on para traspasar data payload.
   socket.on("chats", async (data) => {
     chatsService
       .createChat(data)
@@ -70,9 +67,7 @@ io.on("connection", (socket) => {
       });
   });
 });
-
-//////////////
-/// Middlewares //
+//Middlewares
 app.engine("handlebars", engine());
 app.set("view engine", "handlebars");
 app.set("views", "./views");
@@ -82,22 +77,22 @@ app.use(cors());
 app.use("/uploads/", express.static(__dirname + "/uploads"));
 app.use(express.static(__dirname + "/public"));
 
+//session
 app.use(
   session({
     store: MongoStore.create({ mongoUrl: MONGO_URI }),
-    secret: "moro22Dating",
+    secret: "morodating",
     resave: true,
     saveUninitialized: true,
     cookie: { maxAge: expires * 1000 },
   })
 );
-//Probar renovar secret and resave.
 
 //router
 app.use("/api/chats", chats);
 
-//POSTS: para registrar //Se usa async, para esperar que la BD realice búsqueda.
-app.post("/api/register", upload.single("avatar"), async (req, res) => {
+//POST para loguear y registrar
+app.post("/api/register", uploader.single("avatar"), async (req, res) => {
   try {
     const file = req.file;
     const user = req.body;
@@ -108,10 +103,9 @@ app.post("/api/register", upload.single("avatar"), async (req, res) => {
     if (emailFound) throw new Error("Email already exists.");
 
     const usernameFound = await UserModel.findOne({ username: user.username });
-    if (usernameFound) throw new Error("Username already in use.");
+    if (usernameFound) throw new Error("Username already exists.");
 
     await UserModel.create(user);
-
     res.send({
       status: "success",
       message: "User has been registred successfully!",
@@ -122,14 +116,13 @@ app.post("/api/register", upload.single("avatar"), async (req, res) => {
   }
 });
 
-// para loguear
 app.post("/api/login", async (req, res) => {
   try {
     const { email, password } = req.body;
     if (!email || !password)
       throw new Error("Username or password is not complete.");
     const user = await UserModel.findOne({ email: email });
-    if (!user) throw new Error("Not found user.");
+    if (!user) throw new Error("User not found.");
     if (user.password !== password) throw new Error("Password incorrect.");
     req.session.user = {
       username: user.username,
@@ -142,21 +135,17 @@ app.post("/api/login", async (req, res) => {
   }
 });
 
-//En este get no se requiere poner async.
 app.get("/api/login", (req, res) => {
   if (req.session.user) res.send(req.session.user);
   else res.send({ status: "error", message: "Login failed." });
 });
 
-//para desloguear
 app.post("/api/logout", (req, res) => {
-  //Invocamos session del usuario
   const { username } = req.session.user;
   req.session.user = null;
   res.send({ status: "success", payload: { username: username } });
 });
 
-///////GETS
 app.get("/", (req, res) => {
   res.render("login");
 });
@@ -168,7 +157,7 @@ app.get("/register", (req, res) => {
 app.get("/chat", (req, res) => {
   res.render("chat");
 });
+
 app.get("/logout", (req, res) => {
   res.render("logout");
-  //req.logout()
 });
