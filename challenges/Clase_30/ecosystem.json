@@ -1,0 +1,38 @@
+{
+  "apps": [
+    {
+      "name": "PrincipalServer",
+      "script": "app.js",
+      "watch": "true",
+      "args": "8080"
+    },
+    {
+      "name": "Proceso1",
+      "script": "app.js",
+      "watch": "true",
+      "args": "8082",
+      "exec_mode": "cluster"
+    },
+    {
+      "name": "Proceso2",
+      "script": "app.js",
+      "watch": "true",
+      "args": "8083",
+      "exec_mode": "cluster"
+    },
+    {
+      "name": "Proceso3",
+      "script": "app.js",
+      "watch": "true",
+      "args": "8084",
+      "exec_mode": "cluster"
+    },
+    {
+      "name": "Proceso4",
+      "script": "app.js",
+      "watch": "true",
+      "args": "8085",
+      "exec_mode": "cluster"
+    }
+  ]
+}
