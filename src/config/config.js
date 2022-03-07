@@ -16,3 +16,5 @@ export default {
     SECRET: process.env.JWT_SECRET,
   },
 };
+
+export const PORT = process.env.PORT || 8080;

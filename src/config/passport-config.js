@@ -3,6 +3,7 @@ import local from "passport-local";
 import { userService } from "../services/services.js";
 import { createHash, isValidPassword, cookieExtractor } from "../utils.js";
 import config from "./config.js";
+import { PORT } from "./config.js";
 import jwt from "passport-jwt";
 
 const LocalStrategy = local.Strategy;
@@ -15,25 +16,35 @@ const initializePassport = () => {
     new LocalStrategy(
       { passReqToCallback: true, usernameField: "email", session: false },
       async (req, username, password, done) => {
-        let { first_name, last_name, email, phone } = req.body;
         try {
+          const { first_name, last_name, email, phone, adress, age } = req.body;
+
           if (!req.file)
             return done(null, false, { messages: "Couldn't upload avatar" });
+
           console.log(req.file);
-          let user = await userService.getBy({ email: email });
-          if (user)
+          console.log("phone", phone);
+
+          const userFound = await userService.getBy({ email: email });
+          if (userFound)
             return done(null, false, { messages: "User Already exists" });
+
           const newUser = {
             first_name,
             last_name,
             email,
-            phone,
             password: createHash(password),
-            products: [],
+            username,
+            phone: phone, //prefix + ,
+            adress,
+            age: parseInt(age),
+            products: [], //
             role: "user",
-            profile_picture: req.file.filename,
+            profile_picture: `${req.protocol}://${req.hostname}:${PORT}/uploads/${req.file.filename}`,
           };
+
           let result = await userService.save(newUser);
+
           return done(null, result);
         } catch (err) {
           console.log(err);
@@ -54,6 +65,7 @@ const initializePassport = () => {
           ) {
             return done(null, { id: 0, role: "admin" });
           }
+
           const user = await userService.getBy({ email: username });
           if (!user) return done(null, false, { messages: "No user found" });
           if (!isValidPassword(user, password))
@@ -75,6 +87,7 @@ const initializePassport = () => {
       async (jwt_payload, done) => {
         try {
           if (jwt_payload.role === "admin") return done(null, jwt_payload);
+
           let user = await userService.getBy({ _id: jwt_payload._id });
           if (!user) return done(null, false, { messages: "User not found" });
           return done(null, user);
