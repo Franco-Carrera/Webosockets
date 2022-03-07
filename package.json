@@ -1,43 +1,37 @@
 {
-  "name": "proyect-ecommerce",
+  "name": "websockets",
   "version": "1.0.0",
-  "description": "backend proyect of coderhouse",
-  "main": "src/",
+  "description": "",
+  "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "babel-node src/index",
-    "dev": "nodemon src/index",
-    "build": "babel src/index.js",
+    "start": "nodemon src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Franco-Carrera/Websockets.git"
+    "url": "git+https://github.com/Franco-Carrera/Websockets.git"
   },
   "keywords": [],
-  "author": "Franco Carrera",
+  "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Franco-Carrera/Websockets/issues"
   },
   "homepage": "https://github.com/Franco-Carrera/Websockets#readme",
   "dependencies": {
-    "@babel/cli": "^7.16.0",
-    "@babel/core": "^7.16.5",
-    "@babel/node": "^7.16.5",
-    "@babel/preset-env": "^7.16.5",
-    "babel-plugin-transform-import-meta": "^2.1.0",
+    "aws-sdk": "^2.1087.0",
+    "bcrypt": "^5.0.1",
+    "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
-    "dotenv": "^10.0.0",
-    "express": "^4.17.1",
-    "express-handlebars": "^6.0.2",
-    "firebase-admin": "^10.0.1",
-    "moment": "^2.29.1",
-    "mongoose": "^6.1.4",
-    "multer": "^1.4.3",
-    "socket.io": "^4.4.0"
-  },
-  "devDependencies": {
-    "nodemon": "2.0.14"
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.2.4",
+    "multer": "^1.4.4",
+    "multer-s3": "^2.10.0",
+    "passport": "^0.5.2",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0"
   }
 }
