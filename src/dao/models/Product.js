@@ -1,4 +1,3 @@
-/*
 import pkg from "mongoose";
 const { Schema, model } = pkg;
 
@@ -18,8 +17,8 @@ const ProductSchema = new Schema(
 const Product = model("Product", ProductSchema);
 
 export default Product;
-*/
 
+/*
 import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
@@ -33,7 +32,7 @@ export default class Product {
   }
   static get schema() {
     return {
-      productName: { type: String, required: true },
+      prodName: { type: String, required: true },
       description: { type: String, required: true },
       category: {
         type: Schema.Types.ObjectId,
@@ -47,3 +46,4 @@ export default class Product {
     };
   }
 }
+*/

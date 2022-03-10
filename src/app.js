@@ -6,8 +6,8 @@ import { __dirname } from "./utils.js";
 import cookieParser from "cookie-parser";
 
 import sessionRouter from "./routes/session.js";
-import userRouter from "./routes/users.js";
 
+import userRouter from "./routes/users.js";
 import productsRouter from "./routes/products.js";
 
 import { PORT } from "./config/config.js";

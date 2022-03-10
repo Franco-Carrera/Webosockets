@@ -19,6 +19,8 @@ export default {
 
 export const PORT = process.env.PORT || 8080;
 
+export const MONGO_URI = process.env.MONGO_URI || "";
+
 export const MAILER_AUTH = {
   USER: process.env.MAILER_AUTH_USER,
   PASSWORD: process.env.MAILER_AUTH_PASSWORD,

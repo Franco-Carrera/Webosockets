@@ -1,12 +1,14 @@
 import loggerHandler from "../utils/loggerHandler.js";
 import { PORT } from "../config/config.js";
-import { productService } from "../services/services.js";
+import ProductsMongoDB from "../dao/products/productsMongoDB.js";
+const productService = new ProductsMongoDB();
 const logger = loggerHandler(); //
 
 export const createProduct = (req, res) => {
   const { file } = req;
-  let product = ({ productName, category, description, code, price, stock } =
+  let product = ({ prodName, category, description, code, price, stock } =
     req.body);
+  console.log(product);
 
   let picture = "";
   if (file) {
@@ -14,7 +16,7 @@ export const createProduct = (req, res) => {
   }
 
   productService
-    .save(product) //
+    .createProduct(product) //
     .then((product) => {
       res.json({ product });
       console.log(product);
