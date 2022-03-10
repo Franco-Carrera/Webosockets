@@ -1,6 +1,6 @@
-import Dao from "../model/Dao.js";
-import UserService from "./users.js";
-import ProductsService from "./products.js";
+import Dao from "../dao/db/Dao.js";
+import UserService from "./userService.js";
+import ProductsService from "./productService.js";
 import config from "../config/config.js";
 
 const dao = new Dao(config.mongo);

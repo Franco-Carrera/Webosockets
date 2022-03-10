@@ -32,11 +32,7 @@ router.post("/login", passportCall("login"), (req, res) => {
   });
   res.send({ status: "success", message: "Logged in" });
 });
-router.put("/update", (req, res) => {
-  //Modificar como 2daEntregaFinal(?)
-  //Así con productos
-});
-router.get("/logout", (req, res) => {
+router.post("/logout", (req, res) => {
   res.clearCookie("JWT_COOKIE");
   res.send({ message: "Logged Out" });
 });

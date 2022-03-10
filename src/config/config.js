@@ -18,3 +18,8 @@ export default {
 };
 
 export const PORT = process.env.PORT || 8080;
+
+export const MAILER_AUTH = {
+  USER: process.env.MAILER_AUTH_USER,
+  PASSWORD: process.env.MAILER_AUTH_PASSWORD,
+};

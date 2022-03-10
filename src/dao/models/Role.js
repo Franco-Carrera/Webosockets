@@ -1,11 +1,12 @@
-import { Schema, model } from "mongoose";
+import pkg from "mongoose";
+const { Schema, model } = pkg;
 
 export const ROLES = {
-  ADMINISTRATOR: "administrador",
+  ADMINISTRATOR: "administrator",
   USER: "user",
 };
 
-const RolesSchema = new Schema(
+const RoleSchema = new Schema(
   {
     name: {
       type: String,
@@ -16,6 +17,6 @@ const RolesSchema = new Schema(
   { versionKey: false }
 );
 
-const Role = model("Role", RolesSchema);
+const Role = model("Role", RoleSchema);
 
 export default Role;

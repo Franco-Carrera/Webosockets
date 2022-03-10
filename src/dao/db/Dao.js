@@ -1,6 +1,9 @@
 import mongoose from "mongoose";
-import Product from "./Product.js";
-import User from "./User.js";
+import User from "../models/User.js";
+import Product from "../models/Product.js";
+import loggerHandler from "../../utils/loggerHandler.js";
+//import Category from "../models/Category.js";
+const logger = loggerHandler();
 
 export default class Dao {
   constructor(config) {
