@@ -1,13 +1,17 @@
-import pkg from "mongoose";
-const { Schema, model } = pkg;
+import mongoose from "mongoose";
+const Schema = new mongoose.Schema();
 
-const CategorySchema = new Schema(
-  {
-    name: { type: String, required: true },
-  },
-  { versionKey: false }
-);
-
-const Category = model("Category", CategorySchema);
-
-export default Category;
+export default class Category {
+  constructor(data) {
+    this.data = data;
+  }
+  //Momentáneo
+  static get model() {
+    return "Category";
+  }
+  static get schema() {
+    return {
+      name: { type: String, required: true },
+    };
+  }
+}

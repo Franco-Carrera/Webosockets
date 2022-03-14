@@ -12,9 +12,6 @@ export default class GenericQueries {
   getAll = async (options) => {
     return await this.dao.getAll(options, this.model);
   };
-  createProduct = async (document) => {
-    return await this.dao.createProduct(document, this.model); //create
-  };
   save = async (document) => {
     return this.dao.insert(document, this.model);
   };

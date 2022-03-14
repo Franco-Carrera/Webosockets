@@ -1,29 +1,54 @@
 import loggerHandler from "../utils/loggerHandler.js";
 import { PORT } from "../config/config.js";
-import ProductsMongoDB from "../dao/products/productsMongoDB.js";
-const productService = new ProductsMongoDB();
+import { productService } from "../services/services.js";
 const logger = loggerHandler(); //
 
-export const createProduct = (req, res) => {
+const insertProduct = async (req, res) => {
   const { file } = req;
-  let product = ({ prodName, category, description, code, price, stock } =
-    req.body);
-  console.log(product);
+  let { title, description, category, code, price, stock } = req.body;
 
-  let picture = "";
+  let thumbnail = "";
   if (file) {
-    picture = `${req.protocol}://${req.hostname}:${PORT}/uploads/${file.filename}`;
+    thumbnail = `${req.protocol}://${req.hostname}:${PORT}/uploads/${file.filename}`;
   }
 
-  productService
-    .createProduct(product) //
-    .then((product) => {
-      res.json({ product });
-      console.log(product);
-    })
-    .catch((err) => {
-      logger.error(err);
-      return res.status(500).json({ message: err.message });
-    });
+  if (
+    !title ||
+    !description ||
+    !category ||
+    !code ||
+    !price ||
+    !stock ||
+    !thumbnail
+  )
+    return res.send({ error: "Fields incompletes." });
+
+  let product = {
+    title,
+    description,
+    category,
+    code,
+    price,
+    stock,
+    thumbnail,
+  };
+
+  let products = await productService.getAll();
+  if (products.length > 0) {
+    let id = products[products.length - 1].id;
+    product.id = id;
+    await productService.save(product);
+    res.send({ product: product });
+    console.log(product);
+  }
+  {
+    product.id = 1;
+
+    await productService.save(product);
+    res.send({ product: product });
+  }
 };
-//
+
+export default {
+  insertProduct,
+};
