@@ -1,17 +1,23 @@
-import { Router } from 'express'
-import { getProducts, getProduct, createProduct, updateProduct, deleteProduct } from '../controllers/productController.js'
-import uploadService from '../services/uploadService.js'
+import { Router } from "express";
+import {
+  getProducts,
+  getProduct,
+  createProduct,
+  updateProduct,
+  deleteProduct,
+} from "../controllers/productController.js";
+import { uploader } from "../utils/uploader.js";
 
-const productRouter = Router()
+const productRouter = Router();
 
-productRouter.post('/', uploadService.single('picture'), createProduct)
+productRouter.post("/", uploader.single("picture"), createProduct);
 
-productRouter.get('/', getProducts)
+productRouter.get("/", getProducts);
 
-productRouter.get('/:id', getProduct)
+productRouter.get("/:id", getProduct);
 
-productRouter.put('/:id', uploadService.single('picture'), updateProduct)
+productRouter.put("/:id", uploader.single("picture"), updateProduct);
 
-productRouter.delete('/:id', deleteProduct)
+productRouter.delete("/:id", deleteProduct);
 
-export default productRouter
+export default productRouter;

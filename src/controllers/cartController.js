@@ -1,43 +1,71 @@
 import loggerHandler from "../utils/loggerHandler.js";
-import CartService from "../services/cartService.js";
-const service = new CartService();
+import { cartService } from "../services/services.js";
 const logger = loggerHandler();
 
-export const createCart = (req, res) => {
-  service
-    .createCart()
+export const fetchCart = (req, res) => {
+  const { cartId } = req.params;
+  cartService
+    .getId(cartId)
     .then((cart) => {
       res.json({ cart });
     })
     .catch((err) => {
-      logger.error(err);
+      logger.error(err.message);
       res.status(500).json({ message: err.message });
     });
 };
 
-export const addProduct = async (req, res) => {
-  const cartId = req.params.cartId;
-  const productId = req.params.productId;
-  service
-    .addProduct(cartId, productId)
-    .then(() => {
-      res.json({ message: "Product has been added successfully." });
+export const fetchCarts = (req, res) => {
+  cartService
+    .getAll()
+    .then((carts) => {
+      res.json({ carts });
     })
     .catch((err) => {
-      logger.error(err);
+      logger.error(err.message);
       res.status(500).json({ message: err.message });
     });
 };
 
-export const getProducts = async (req, res) => {
+export const createCart = (req, res) => {
+  const { userId } = req.body;
+  cartService
+    .save(userId)
+    .then((cart) => {
+      res.json({ cart });
+    })
+    .catch((err) => {
+      logger.error(err.message);
+      res.status(500).json({ message: err.message });
+    });
+};
+
+/////////////////////////////////////
+export const addProduct = async (req, res) => {
   const cartId = req.params.cartId;
-  service
-    .getProducts(cartId)
+  const productId = req.body.id; //or _id PROBAL or productId or Params
+
+  cartService
+    .exists(cartId, productId)
+    .then((result) => res.send(result))
+    .catch((err) => {
+      logger.error(err.message);
+      res.status(500).json({ message: err.message });
+    });
+
+  console.log(cartId);
+  console.log(productId); //sale
+};
+
+export const fetchProducts = async (req, res) => {
+  const cartId = req.params.cartId;
+  cartService
+    .getAll(cartId)
     .then((products) => {
       res.json({ products });
     })
     .catch((err) => {
-      logger.error(err);
+      logger.error(err.message);
       res.status(500).json({ message: err.message });
     });
 };
@@ -45,28 +73,28 @@ export const getProducts = async (req, res) => {
 export const deleteProduct = async (req, res) => {
   const cartId = req.params.cartId;
   const productId = req.params.productId;
-  service
+  cartService
     .deleteProduct(cartId, productId)
     .then(() => {
-      res.status(204).json({
-        message: "Product has been removed from the cart successfully.",
-      });
+      res.sendStatus(204);
     })
     .catch((err) => {
-      logger.error(err);
+      logger.error(err.message);
+      res.status(500).json({ message: err.message });
+    });
+};
+///////////////////////////////////
+export const deleteCart = async (req, res) => {
+  const cartId = req.params.cartId;
+  cartService
+    .delete(cartId)
+    .then(() => {
+      res.sendStatus(204);
+    })
+    .catch((err) => {
+      logger.error(err.message);
       res.status(500).json({ message: err.message });
     });
 };
 
-export const deleteCart = async (req, res) => {
-  const cartId = req.params.cartId;
-  service
-    .deleteCart(cartId)
-    .then(() => {
-      res.status(204).json({ message: "Cart has been deleted successfully." });
-    })
-    .catch((err) => {
-      logger.error(err);
-      res.status(500).json({ message: err.message });
-    });
-};
+//////////////////////////////

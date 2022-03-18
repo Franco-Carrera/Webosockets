@@ -1,8 +1,10 @@
 import mongoose from "mongoose";
 import User from "../models/User.js";
-//import Product from "../models/Product.js";
 import loggerHandler from "../../utils/loggerHandler.js";
-//import Category from "../models/Category.js";
+import Cart from "../models/Cart.js";
+import Product from "../models/Product.js";
+import Chats from "../models/Chats.js";
+
 const logger = loggerHandler();
 
 export default class Dao {
@@ -13,75 +15,46 @@ export default class Dao {
         console.log(error);
         process.exit();
       });
+    logger.info("Realized connection MongoDB.");
     const timestamp = {
       timestamps: { createdAt: "created_at", updatedAt: "updated_at" },
     };
     const userSchema = mongoose.Schema(User.schema, timestamp);
-    //const productSchema = mongoose.Schema(Product.schema, timestamp);
+    const cartSchema = mongoose.Schema(Cart.schema, timestamp);
+    const productSchema = mongoose.Schema(Product.schema, timestamp);
+    const chatSchema = mongoose.Schema(null, timestamp);
 
     this.models = {
       [User.model]: mongoose.model(User.model, userSchema),
-      //[Product.model]: mongoose.model(Product.model, productSchema),
+      [Cart.model]: mongoose.model(Cart.model, cartSchema),
+      [Product.model]: mongoose.model(Product.model, productSchema),
+      [Chats.model]: mongoose.model(Chats.model, chatSchema),
     };
+    ``;
   }
+
   findOne = async (options, entity) => {
     if (!this.models[entity])
       throw new Error(`Entity ${entity} not in dao schemas`);
     let result = await this.models[entity].findOne(options);
     return result ? result.toObject() : null;
   };
+
   getAll = async (options, entity) => {
     if (!this.models[entity])
       throw new Error(`Entity ${entity} not in dao schemas`);
     let results = await this.models[entity].find(options);
     return results.map((result) => result.toObject());
   };
-  createProduct = async (
-    document,
-    entity,
-    prodName,
-    category,
-    description,
-    code,
-    picture,
-    price,
-    stock
-  ) => {
-    //pasar + argumentos
+
+  getUser = async (options, entity) => {
     if (!this.models[entity])
       throw new Error(`Entity ${entity} not in dao schemas`);
 
-    if (
-      !prodName ||
-      !category ||
-      !description ||
-      !code ||
-      !picture ||
-      !price ||
-      !stock
-    )
-      throw new Error("Body product is not formed correctly.");
-
-    let instance = new this.models[entity](document);
-
-    const product = await this.models[entity].findOne({
-      prodName: { $eq: prodName },
-    });
-    if (product) throw new Error("Product Already exists.");
-
-    stock = parseInt(stock);
-    price = parseInt(price);
-
-    const productFound = await this.models[entity].create({
-      prodName,
-      category,
-      description,
-      code,
-      picture,
-      price,
-      stock,
-    });
-    return productFound;
+    const userFound = await this.models[entity].findById(options);
+    // .populate("role");
+    if (!userFound) throw new Error("User not found.");
+    return userFound;
   };
 
   insert = async (document, entity) => {
@@ -96,6 +69,18 @@ export default class Dao {
       return null;
     }
   };
+
+  //addProductToCart
+  addProduct = async (cartId, productId, entity) => {
+    if (!this.models[entity])
+      throw new Error(`Entity ${entity} not in dao schemas`);
+    let result = await this.models[entity].updateOne(
+      { _id: cartId },
+      { $push: { products: productId } }
+    );
+    return { status: "success", payload: result };
+  }; //BORRAR LUEGO.
+
   update = async (document, entity) => {
     if (!this.models[entity])
       throw new Error(`Entity ${entity} not in dao schemas`);
@@ -108,15 +93,31 @@ export default class Dao {
     );
     return result.toObject();
   };
+
   delete = async (id, entity) => {
     if (!this.models[entity])
       throw new Error(`Entity ${entity} not in dao schemas`);
     let result = await this.models[entity].findByIdAndDelete(id);
     return result ? result.toObject() : null;
   };
-  exists = async (entity, options) => {
+
+  exists = async (cartId, productId, entity) => {
     if (!this.models[entity])
       throw new Error(`Entity ${entity} not in dao schemas`);
-    return this.models[entity].exists(options);
+
+    let result = await this.models[entity].updateOne(
+      // .exists(options) //si exists prueba
+      { _id: cartId },
+      { $push: { products: productId } }
+    );
+    return { status: "success", payload: result };
+  };
+
+  getProductsByCartId = async (cartId, entity) => {
+    if (!this.models[entity])
+      throw new error(`Entity ${entity} not in dao schemas`);
+    let cart = await this.models[entity].findById(cartId);
+    let products = cart.products;
+    return { status: "success", payload: products };
   };
 }

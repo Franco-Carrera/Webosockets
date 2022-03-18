@@ -17,7 +17,8 @@ const initializePassport = () => {
       { passReqToCallback: true, usernameField: "email", session: false },
       async (req, username, password, done) => {
         try {
-          const { first_name, last_name, email, phone, adress, age } = req.body;
+          const { first_name, last_name, email, phone, address, age } =
+            req.body;
 
           if (!req.file)
             return done(null, false, { messages: "Couldn't upload avatar" });
@@ -36,7 +37,7 @@ const initializePassport = () => {
             password: createHash(password),
             username,
             phone: phone, //prefix + ,
-            adress,
+            address,
             age: parseInt(age),
             products: [], //
             role: "user",

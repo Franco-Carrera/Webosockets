@@ -21,17 +21,13 @@ export default class User {
         default: "anonymus",
       },
       phone: { type: String, required: true, trim: true },
-      adress: { type: String, required: true, trim: true },
+      address: { type: String, required: true, trim: true },
       age: { type: Number, required: true, trim: true },
-      // products: [
-      //   {
-      //     type: Boolean,
-      //     default: true,
-      //   },
-      // ],
       role: { type: String },
-      // role: { type: Schema.Types.ObjectId, ref: "Role", required: true },
       profile_picture: { type: String },
+      cart: {
+        type: Array,
+      },
     };
   }
 }

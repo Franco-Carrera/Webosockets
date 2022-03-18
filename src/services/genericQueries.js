@@ -1,6 +1,3 @@
-//import Category from "../dao/models/Category.js";
-//import Product from "../dao/models/Product.js";
-
 export default class GenericQueries {
   constructor(dao, model) {
     this.dao = dao;
@@ -9,12 +6,14 @@ export default class GenericQueries {
   getBy = async (options) => {
     return this.dao.findOne(options, this.model);
   };
+
   getAll = async (options) => {
-    return await this.dao.getAll(options, this.model);
+    return this.dao.getAll(options, this.model);
   };
-  createProduct = async (document) => {
-    return await this.dao.createProduct(document, this.model); //create
+  getId = async (options) => {
+    return this.dao.getUser(options, this.model);
   };
+
   save = async (document) => {
     return this.dao.insert(document, this.model);
   };
@@ -24,5 +23,13 @@ export default class GenericQueries {
   };
   delete = async (id) => {
     return this.dao.delete(id, this.model);
+  };
+
+  exists = async (cartId, productId) => {
+    return this.dao.exists(cartId, productId, this.model);
+  };
+
+  getProductsByCartId = async (id) => {
+    return this.dao.getProductsByCartId(id, this.model);
   };
 }
