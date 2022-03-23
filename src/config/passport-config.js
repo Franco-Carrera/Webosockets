@@ -35,8 +35,6 @@ const initializePassport = () => {
           if (!req.file)
             return done(null, false, { messages: "Couldn't upload avatar" });
 
-          logger.info("phone", phone);
-
           const userFound = await userService.getBy({ email: email });
           if (userFound)
             return done(null, false, { messages: "User Already exists" });

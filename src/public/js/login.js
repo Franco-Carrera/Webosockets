@@ -22,9 +22,9 @@ form.addEventListener("submit", (e) => {
         "Content-Type": "application/json",
       },
     })
-      // .then((result) => result.json()) //línea agregada
+      .then((result) => result.json())
       .then((result) => {
-        if (result.status === 200) {
+        if (result.status === "success") {
           location.replace("../home.html");
         } else {
           // return result.json();
