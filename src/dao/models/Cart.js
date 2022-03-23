@@ -1,12 +1,16 @@
-import { Schema, model } from "mongoose";
+import mongoose from "mongoose";
+const Schema = mongoose.Schema;
 
-const CartSchema = new Schema(
-  {
-    products: [{ type: Schema.Types.ObjectId, ref: "Product" }],
-  },
-  { timestamps: true, versionKey: false }
-);
-
-const Cart = model("Cart", CartSchema);
-
-export default Cart;
+export default class Cart {
+  constructor(data) {
+    this.data = data;
+  }
+  static get model() {
+    return "Carts";
+  }
+  static get schema() {
+    return {
+      products: [{ type: Schema.Types.ObjectId, ref: "Products" }],
+    };
+  }
+}

@@ -14,4 +14,16 @@ export const getUsers = (req, res) => {
     });
 };
 
-//crear json con products y cart
+export const getUser = (req, res) => {
+  const { userId } = req.params;
+
+  userService
+    .getId(userId)
+    .then((user) => {
+      res.json({ user });
+    })
+    .catch((err) => {
+      logger.error(err);
+      return res.status(500).json({ message: err.message });
+    });
+};

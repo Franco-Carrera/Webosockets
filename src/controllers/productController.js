@@ -1,54 +1,80 @@
 import loggerHandler from "../utils/loggerHandler.js";
 import { PORT } from "../config/config.js";
 import { productService } from "../services/services.js";
+import { io } from "../app.js";
+
 const logger = loggerHandler(); //
 
-const insertProduct = async (req, res) => {
+export const createProduct = async (req, res) => {
   const { file } = req;
-  let { title, description, category, code, price, stock } = req.body;
+  const product = req.body;
 
-  let thumbnail = "";
   if (file) {
-    thumbnail = `${req.protocol}://${req.hostname}:${PORT}/uploads/${file.filename}`;
+    product.picture = `${req.protocol}://${req.hostname}:${PORT}/uploads/${file.filename}`;
   }
 
-  if (
-    !title ||
-    !description ||
-    !category ||
-    !code ||
-    !price ||
-    !stock ||
-    !thumbnail
-  )
-    return res.send({ error: "Fields incompletes." });
-
-  let product = {
-    title,
-    description,
-    category,
-    code,
-    price,
-    stock,
-    thumbnail,
-  };
-
-  let products = await productService.getAll();
-  if (products.length > 0) {
-    let id = products[products.length - 1].id;
-    product.id = id;
-    await productService.save(product);
-    res.send({ product: product });
-    console.log(product);
-  }
-  {
-    product.id = 1;
-
-    await productService.save(product);
-    res.send({ product: product });
-  }
+  productService
+    .save(product)
+    .then((result) => {
+      res.send(result);
+      productService.getAll().then((result) => {
+        io.emit("deliverProducts", result);
+      });
+    })
+    .catch((err) => {
+      logger.error(err.message);
+      res.status(500).json({ message: err.message });
+    });
 };
 
-export default {
-  insertProduct,
+export const getProducts = async (req, res) => {
+  productService.getAll().then((result) => {
+    res.send(result);
+  });
+};
+
+export const getProduct = async (req, res) => {
+  let productId = req.params.pid;
+  productService.getBy({ id: productId }).then((result) => {
+    res.send(result);
+  });
+};
+
+/*
+export const getProductPostman = async (req, res) => {
+  let productId = req.params.pid;
+  productService.getId({ _id: productId }).then((result) => {
+    res.send(result);
+  }); //Modifica front por (userFound)///
+};*/ /////
+
+export const updateProduct = async (req, res) => {
+  const { file } = req;
+  const productId = req.params.pid;
+  const product = req.body;
+  if (file) {
+    product.picture = `${req.protocol}://${req.hostname}:${process.env.PORT}/uploads/${file.filename}`;
+  }
+  productService
+    .update(productId, product)
+    .then((product) => {
+      res.json({ product });
+    })
+    .catch((err) => {
+      logger.error(err.message);
+      res.status(500).json({ message: err.message });
+    });
+};
+
+export const deleteProduct = async (req, res) => {
+  const productId = req.params.pid;
+  productService
+    .delete(productId)
+    .then(() => {
+      res.sendStatus(204);
+    })
+    .catch((err) => {
+      logger.error(err.message);
+      res.status(500).json({ message: err.message });
+    });
 };
