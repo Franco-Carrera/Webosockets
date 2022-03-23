@@ -4,6 +4,9 @@
   "description": "API Inicio",
   "main": "src/",
   "type": "module",
+  "engines": {
+    "node": "16.14.2"
+  },
   "scripts": {
     "start": "babel-node src/app.js",
     "build": "babel src/app.js --out-dir build",
