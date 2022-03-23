@@ -3,10 +3,13 @@ export default class GenericQueries {
     this.dao = dao;
     this.model = model;
   }
+
+  exists = async (options) => {
+    return this.dao.exists(options, this.model);
+  };
   getBy = async (options) => {
     return this.dao.findOne(options, this.model);
   };
-
   getAll = async (options) => {
     return this.dao.getAll(options, this.model);
   };
@@ -25,10 +28,9 @@ export default class GenericQueries {
     return this.dao.delete(id, this.model);
   };
 
-  exists = async (cartId, productId) => {
-    return this.dao.exists(cartId, productId, this.model);
+  addProduct = async (cartId, productId) => {
+    return this.dao.addProductToCart(cartId, productId, this.model);
   };
-
   getProductsByCartId = async (id) => {
     return this.dao.getProductsByCartId(id, this.model);
   };

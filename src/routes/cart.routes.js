@@ -7,12 +7,15 @@ import {
   deleteProduct,
   deleteCart,
   fetchCart,
+  confirmUser,
 } from "../controllers/cartController.js";
 const cartRouter = Router();
 
 cartRouter.get("/:cartId", fetchCart);
 
 cartRouter.get("/", fetchCarts);
+
+cartRouter.get("/:userId/confirm", confirmUser);
 
 cartRouter.post("/", createCart);
 

@@ -37,6 +37,7 @@ form.addEventListener("submit", (e) => {
       .then((response) => {
         if (response.status === "success") {
           form.reset();
+          location.replace("index.html");
           Swal.fire({
             title: "Registered!",
             text: "You have been successfully registered.",

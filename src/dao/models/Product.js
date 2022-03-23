@@ -1,12 +1,9 @@
-import mongoose from "mongoose";
-const Schema = mongoose.Schema;
-
 export default class Product {
   constructor(data) {
     this.data = data;
   }
   static get model() {
-    return "Product";
+    return "Products";
   }
   static get schema() {
     return {

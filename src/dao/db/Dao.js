@@ -33,6 +33,12 @@ export default class Dao {
     ``;
   }
 
+  exists = async (entity, options) => {
+    if (!this.models[entity])
+      throw new error(`Entity ${entity} not in dao schemas`);
+    return this.models[entity].exists(options);
+  };
+
   findOne = async (options, entity) => {
     if (!this.models[entity])
       throw new Error(`Entity ${entity} not in dao schemas`);
@@ -70,17 +76,6 @@ export default class Dao {
     }
   };
 
-  //addProductToCart
-  addProduct = async (cartId, productId, entity) => {
-    if (!this.models[entity])
-      throw new Error(`Entity ${entity} not in dao schemas`);
-    let result = await this.models[entity].updateOne(
-      { _id: cartId },
-      { $push: { products: productId } }
-    );
-    return { status: "success", payload: result };
-  }; //BORRAR LUEGO.
-
   update = async (document, entity) => {
     if (!this.models[entity])
       throw new Error(`Entity ${entity} not in dao schemas`);
@@ -101,12 +96,12 @@ export default class Dao {
     return result ? result.toObject() : null;
   };
 
-  exists = async (cartId, productId, entity) => {
+  //Cart
+  addProductToCart = async (cartId, productId, entity) => {
     if (!this.models[entity])
       throw new Error(`Entity ${entity} not in dao schemas`);
 
     let result = await this.models[entity].updateOne(
-      // .exists(options) //si exists prueba
       { _id: cartId },
       { $push: { products: productId } }
     );

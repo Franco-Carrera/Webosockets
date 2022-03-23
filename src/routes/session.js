@@ -1,8 +1,8 @@
 import express from "express";
 import { passportCall, checkAuthorization } from "../utils/middlewares.js";
-import { uploader } from "../utils/uploader.js";
 import jwt from "jsonwebtoken";
 import config from "../config/config.js";
+import { uploader } from "../utils/uploader.js";
 
 const router = express.Router();
 
@@ -20,7 +20,7 @@ router.post(
   uploader.single("avatar"),
   passportCall("register"),
   (req, res) => {
-    res.send({ message: "Signed up" });
+    res.send({ status: "success", message: "Signed up" });
   }
 );
 router.post("/login", passportCall("login"), (req, res) => {

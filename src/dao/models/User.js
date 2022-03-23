@@ -12,7 +12,7 @@ export default class User {
     return {
       first_name: { type: String, required: true, trim: true },
       last_name: { type: String, required: true, trim: true },
-      email: { type: String, required: true, trim: true },
+      email: { type: String, required: true, trim: true, unique: true },
       password: { type: String, required: true },
       username: {
         type: String,
@@ -24,7 +24,7 @@ export default class User {
       address: { type: String, required: true, trim: true },
       age: { type: Number, required: true, trim: true },
       role: { type: String },
-      profile_picture: { type: String },
+      avatar: { type: String },
       cart: {
         type: Array,
       },

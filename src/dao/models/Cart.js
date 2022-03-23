@@ -10,8 +10,7 @@ export default class Cart {
   }
   static get schema() {
     return {
-      products: [{ type: Schema.Types.ObjectId, ref: "Product" }],
-      user: { type: Schema.Types.ObjectId, ref: "User", unique: true },
+      products: [{ type: Schema.Types.ObjectId, ref: "Products" }],
     };
-  } //probando ref Users como get model () "Users"
+  }
 }

@@ -21,17 +21,19 @@ form.addEventListener("submit", (e) => {
       headers: {
         "Content-Type": "application/json",
       },
-    }).then((result) => {
-      if (result.status === 200) {
-        location.replace("../home.html");
-      } else {
-        // return result.json();
-        Swal.fire({
-          title: "Error!",
-          text: result.message,
-          icon: "error",
-        });
-      }
-    });
+    })
+      // .then((result) => result.json()) //línea agregada
+      .then((result) => {
+        if (result.status === 200) {
+          location.replace("../home.html");
+        } else {
+          // return result.json();
+          Swal.fire({
+            title: "Error!",
+            text: result.message,
+            icon: "error",
+          });
+        }
+      });
   }
 });
