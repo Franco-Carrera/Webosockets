@@ -11,8 +11,8 @@ export default class Dao {
   constructor(config) {
     this.mongoose = mongoose
       .connect(config.url, { useNewUrlParser: true })
-      .catch((error) => {
-        console.log(error);
+      .catch((err) => {
+        logger.error(err);
         process.exit();
       });
     logger.info("Realized connection MongoDB.");
@@ -70,8 +70,8 @@ export default class Dao {
       let instance = new this.models[entity](document);
       let result = await instance.save();
       return result ? result.toObject() : null;
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      logger.error(err);
       return null;
     }
   };

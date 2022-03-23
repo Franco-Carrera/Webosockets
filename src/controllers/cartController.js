@@ -115,7 +115,6 @@ export const confirmUser = async (req, res) => {
                 `,
     };
     let emailResult = transport.sendMail(mail);
-    console.log(emailResult);
 
     let wspResult = await client.messages.create({
       from: "whatsapp:+14155238886",
@@ -124,7 +123,6 @@ export const confirmUser = async (req, res) => {
         user.email
       }, productos: ${JSON.stringify(user.cart)}`,
     });
-    console.log(wspResult);
 
     const sms = await client.messages.create({
       body: `Hola ${
@@ -135,9 +133,9 @@ export const confirmUser = async (req, res) => {
       from: "+19033205689",
       to: `+${user.phone}`,
     });
-    console.log(sms);
+
     res.send(`Felicitaciones ${user.first_name} su compra fue realizada`);
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 };

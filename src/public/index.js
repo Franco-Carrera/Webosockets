@@ -25,7 +25,7 @@ submit.addEventListener("click", () => {
       date: date.toLocaleString(),
     });
   } else {
-    console.log("message not send");
+    // console.log("message not send");
   }
 });
 
@@ -75,7 +75,7 @@ const sendForm = (event) => {
       return result.json();
     })
     .then((json) => {
-      console.log(json);
+      // console.log(json);
       return { status: "success", message: "Producto Agregado" };
     })
     .then((result) => (location.href = "/"));
