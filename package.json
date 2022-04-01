@@ -4,6 +4,9 @@
   "description": "backend proyect of coderhouse",
   "main": "src/",
   "type": "module",
+  "engines": {
+    "node": "16.14.2"
+  },
   "scripts": {
     "start": "babel-node src/index",
     "dev": "nodemon src/index",
