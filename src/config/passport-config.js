@@ -1,12 +1,12 @@
 import passport from "passport";
 import local from "passport-local";
 import { userService } from "../services/services.js";
-import { createHash, isValidPassword, cookieExtractor } from "../utils.js";
+import { cookieExtractor } from "../utils.js";
 import jwt from "passport-jwt";
 import config from "./config.js";
 import { PORT } from "./config.js";
 import { createTransport } from "nodemailer";
-import loggerHandler from "../utils/loggerHandler.js";
+import loggerHandler from "../middlewares/loggerHandler.js";
 const logger = loggerHandler();
 
 const LocalStrategy = local.Strategy;
@@ -22,6 +22,8 @@ const transport = createTransport({
   },
 });
 
+//config added, add public and new index socket .
+
 const initializePassport = () => {
   passport.use(
     "register",
@@ -35,7 +37,7 @@ const initializePassport = () => {
           if (!req.file)
             return done(null, false, { messages: "Couldn't upload avatar" });
 
-          const userFound = await userService.getBy({ email: email });
+          const userFound = await userService.getByMail({ email: email });
           if (userFound)
             return done(null, false, { messages: "User Already exists" });
 
@@ -43,7 +45,7 @@ const initializePassport = () => {
             first_name,
             last_name,
             email,
-            password: createHash(password),
+            password: await userService.encryptPassword(password),
             username,
             phone, //phone + prefix,
             address,
@@ -66,7 +68,7 @@ const initializePassport = () => {
                 `,
           };
           let emailResult = await transport.sendMail(mail);
-          let result = await userService.save(newUser);
+          let result = await userService.add(newUser);
 
           logger.info(
             "Email has been sent to the new user for new registration."
@@ -96,10 +98,17 @@ const initializePassport = () => {
             return done(null, { id: 0, role: "admin" });
           }
 
-          const user = await userService.getBy({ email: username });
+          const user = await userService.getOne({ email: username }); //+populate rol
           if (!user) return done(null, false, { messages: "User not found." });
-          if (!isValidPassword(user, password))
-            return done(null, false, { messages: "Incorrect password" });
+
+          const isValidPassword = await userService.comparePassword(
+            password,
+            user.password
+          );
+          if (!isValidPassword)
+            return done(null, false, {
+              messages: "Not valid username or password.",
+            });
 
           return done(null, user);
         } catch (err) {
@@ -120,8 +129,9 @@ const initializePassport = () => {
         try {
           if (jwt_payload.role === "admin") return done(null, jwt_payload);
 
-          let user = await userService.getBy({ _id: jwt_payload._id });
+          const user = await userService.getOne({ _id: jwt_payload._id }); //changing getBy
           if (!user) return done(null, false, { messages: "Not found user." });
+
           return done(null, user);
         } catch (err) {
           logger.error(err.message);
@@ -134,7 +144,7 @@ const initializePassport = () => {
     done(null, user._id);
   });
   passport.deserializeUser(async (id, done) => {
-    let result = await userService.getBy({ _id: id });
+    let result = await userService.getId({ _id: id });
     done(null, result);
   });
 };

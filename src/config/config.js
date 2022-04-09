@@ -1,9 +1,35 @@
-import dotenv from "dotenv";
-dotenv.config();
-export default {
-  mongo: {
-    url: process.env.MONGO_URI || "mongodb://localhost:27017/coderback",
+import { __dirname } from "../utils.js";
+import { config } from "dotenv";
+config();
+
+export const PORT = process.env.PORT || 3000;
+export const PERSISTENCE = process.env.PERSISTENCE;
+export const ENVIRONMENT = process.env.ENVIRONMENT;
+
+export const SWAGGER = {
+  spec: {
+    definition: {
+      openapi: "3.0.0",
+      info: {
+        title: "Mutant API",
+        version: "1.0.0",
+      },
+      servers: [
+        {
+          url: `http://localhost:${PORT}`,
+        },
+      ],
+    },
+    apis: [`${__dirname}/routes/*.js`],
   },
+};
+
+export const MONGO = {
+  URI_DEVELOPMENT: process.env.MONGO_URI_DEVELOPMENT || "",
+  URI_TESTER: process.env.MONGO_URI_TESTER || "",
+};
+
+export default {
   session: {
     ADMIN: process.env.ADMIN,
     PASSWORD: process.env.PASSWORD,
@@ -20,5 +46,3 @@ export default {
     PERSONAL_NUMBER: process.env.TWILIO_PERSONAL_NUMBER,
   },
 };
-
-export const PORT = process.env.PORT || 8080;

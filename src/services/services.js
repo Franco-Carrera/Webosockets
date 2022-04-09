@@ -1,13 +1,21 @@
-import Dao from "../dao/db/Dao.js";
+import MongoDAO from "../models/MongoDAO.js";
 import UserService from "./userService.js";
-import CartService from "./cartService.js";
 import ProductService from "./productService.js";
-import config from "../config/config.js";
-import ChatService from "./chatsService.js";
+import CartService from "./cartService.js";
+import { PERSISTENCE, MONGO, ENVIRONMENT } from "../config/config.js";
 
-const dao = new Dao(config.mongo);
+let dao;
+
+switch (PERSISTENCE) {
+  case "MONGO":
+    if (ENVIRONMENT === "DEVELOPMENT") {
+      dao = new MongoDAO(MONGO.URI_DEVELOPMENT);
+    } else if (ENVIRONMENT === "TESTER") {
+      dao = new MongoDAO(MONGO.URI_TESTER);
+    }
+    break;
+}
 
 export const userService = new UserService(dao);
-export const cartService = new CartService(dao);
 export const productService = new ProductService(dao);
-export const chatService = new ChatService(dao);
+export const cartService = new CartService(dao);
