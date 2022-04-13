@@ -34,7 +34,8 @@ sessionRouter.post("/login", passportCall("login"), (req, res) => {
   res.send({ status: "success", message: "Logged in" });
 });
 
-sessionRouter.get("/logout", (req, res) => {
+sessionRouter.post("/logout", (req, res) => {
+  //change to POST
   res.clearCookie("JWT_COOKIE");
   res.send({ message: "Logged Out" });
 });

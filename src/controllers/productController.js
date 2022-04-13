@@ -1,8 +1,10 @@
 import { productService } from "../services/services.js";
 import { PORT } from "../config/config.js";
 import loggerHandler from "../middlewares/loggerHandler.js";
-import ProductDTO from "../dto/ProductDTO.js";
 const logger = loggerHandler();
+import ProductDTO from "../dto/ProductDTO.js";
+import { Server } from "socket.io";
+const io = new Server();
 
 export const createProduct = async (req, res) => {
   try {
@@ -27,6 +29,12 @@ export const createProduct = async (req, res) => {
 
     const product = await productService.add(document);
     const productDTO = new ProductDTO(product);
+    productService.get().then((products) => {
+      //probar solo poner esto + lógica de que conviene
+      io.emit("deliverProducts", products);
+      //no le importa _id, sólo trae products
+    });
+    //ver como trae para el front.
     res.json({ product: productDTO });
   } catch (err) {
     logger.error(err.message);

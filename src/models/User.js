@@ -20,6 +20,7 @@ export default class User {
       age: { type: Number, required: true, trim: true },
       avatar: { type: String },
       role: { type: String, required: true },
+      //  cart: {type: Schema.Types.ObjectId, ref: "Cart"} entender concepto
     };
   }
 }

@@ -1,183 +1,37 @@
-{"level":"error","message":"Cannot read property 'id' of null","timestamp":"2022-03-21T21:51:33.836Z"}
-{"level":"error","message":"Cannot read property '_id' of null","timestamp":"2022-03-21T22:17:19.275Z"}
-{"level":"error","message":"Cannot read property 'id' of null","timestamp":"2022-03-21T22:28:19.866Z"}
-{"level":"error","message":"E11000 duplicate key error collection: coderhouse-backend.users index: username_1 dup key: { username: \"dbedyukh\" }","timestamp":"2022-03-21T23:42:19.483Z"}
-{"level":"error","message":"Missing 'productId' parameter!","timestamp":"2022-03-22T16:01:02.205Z"}
-{"level":"error","message":"Product already exists.","timestamp":"2022-03-22T17:30:33.509Z"}
-{"level":"error","message":"Cannot read property 'name' of null","timestamp":"2022-03-22T17:31:43.780Z"}
-{"level":"error","message":"Cannot read property 'name' of null","timestamp":"2022-03-22T17:31:58.586Z"}
-{"level":"error","message":"Cannot read property 'name' of null","timestamp":"2022-03-22T17:32:00.978Z"}
-{"level":"error","message":"Cannot read property 'name' of null","timestamp":"2022-03-22T17:32:51.923Z"}
-{"level":"error","message":"Error server: Error: listen EADDRINUSE: address already in use :::3000","timestamp":"2022-03-22T17:34:19.262Z"}
-{"level":"error","message":"Product already exists.","timestamp":"2022-03-22T17:36:41.479Z"}
-{"level":"error","message":"Product validation failed: picture: Path `picture` is required., stock: Path `stock` is required., price: Path `price` is required., code: Path `code` is required., category: Path `category` is required., description: Path `description` is required., name: Path `name` is required.","timestamp":"2022-03-22T17:36:58.875Z"}
-{"level":"error","message":"Product already exists.","timestamp":"2022-03-22T17:38:08.157Z"}
-{"level":"error","message":"Cannot read property 'name' of null","timestamp":"2022-03-22T17:42:06.716Z"}
-{"level":"error","message":"Category not found.","timestamp":"2022-03-22T17:42:39.532Z"}
-{"level":"error","message":"body is not defined","timestamp":"2022-03-22T17:42:42.705Z"}
-{"level":"error","message":"Category not found.","timestamp":"2022-03-22T17:43:22.263Z"}
-{"level":"error","message":"roductService is not defined","timestamp":"2022-03-28T02:11:22.537Z"}
-{"level":"error","message":"Non-existent product.","timestamp":"2022-03-28T02:11:31.382Z"}
-{"level":"error","message":"_Product.default.findOne is not a function","timestamp":"2022-03-28T02:11:52.805Z"}
-{"level":"error","message":"Product already exists.","timestamp":"2022-03-28T02:13:22.966Z"}
-{"level":"error","message":"_User.default.findOne is not a function","timestamp":"2022-03-28T02:23:07.162Z"}
-{"level":"error","message":"Cannot read property 'firstName' of null","timestamp":"2022-03-28T02:24:26.273Z"}
-{"level":"error","message":"_services.cartService.getOne(...).getOne is not a function","timestamp":"2022-03-28T02:54:46.487Z"}
-{"level":"error","message":"_services.cartService.get(...).populate is not a function","timestamp":"2022-03-28T02:57:41.703Z"}
-{"level":"error","message":"_services.cartService.findById is not a function","timestamp":"2022-03-28T03:00:13.235Z"}
-{"level":"error","message":"_services.cartService.getOne(...).getOne is not a function","timestamp":"2022-03-28T03:00:29.436Z"}
-{"level":"error","message":"Non-existent product in cart.","timestamp":"2022-03-28T03:01:54.802Z"}
-{"level":"error","message":"Non-existent product in cart.","timestamp":"2022-03-28T03:02:19.147Z"}
-{"level":"error","message":"Non-existent product in cart.","timestamp":"2022-03-28T03:02:46.245Z"}
-{"level":"error","message":"Non-existent product in cart.","timestamp":"2022-03-28T03:03:58.696Z"}
-{"level":"error","message":"Non-existent product in cart.","timestamp":"2022-03-28T03:05:44.371Z"}
-{"level":"error","message":"id.toObject is not a function","timestamp":"2022-03-28T03:05:53.387Z"}
-{"level":"error","message":"Non-existent product in cart.","timestamp":"2022-03-28T03:06:57.813Z"}
-{"level":"error","message":"Non-existent cart.","timestamp":"2022-03-28T03:07:45.630Z"}
-{"level":"error","message":"Non-existent cart.","timestamp":"2022-03-28T03:07:52.383Z"}
-{"level":"error","message":"Non-existent cart.","timestamp":"2022-03-28T03:07:55.959Z"}
-{"level":"error","message":"Non-existent cart.","timestamp":"2022-03-28T03:07:58.441Z"}
-{"level":"error","message":"Non-existent cart.","timestamp":"2022-03-28T15:32:07.346Z"}
-{"level":"error","message":"Cannot read property '_id' of null","timestamp":"2022-03-28T15:33:51.284Z"}
-{"level":"error","message":"Cannot read property '_id' of null","timestamp":"2022-03-28T15:35:35.872Z"}
-{"level":"error","message":"Cart already exists for this user.","timestamp":"2022-03-28T15:36:07.806Z"}
-{"level":"error","message":"Error server: Error: listen EADDRINUSE: address already in use :::3000","timestamp":"2022-04-01T00:06:58.754Z"}
-{"level":"error","message":"Error server: Error: listen EADDRINUSE: address already in use :::3000","timestamp":"2022-04-01T00:07:58.344Z"}
-{"level":"error","message":"Error server: Error: listen EADDRINUSE: address already in use :::3000","timestamp":"2022-04-01T00:07:58.379Z"}
-{"level":"error","message":"Error server: Error: listen EADDRINUSE: address already in use :::3000","timestamp":"2022-04-01T00:08:06.835Z"}
-{"level":"error","message":"Error server: Error: listen EADDRINUSE: address already in use :::3000","timestamp":"2022-04-01T00:08:06.864Z"}
-{"level":"error","message":"Error server: Error: listen EADDRINUSE: address already in use :::3000","timestamp":"2022-04-01T00:08:09.312Z"}
-{"level":"error","message":"Error server: Error: listen EADDRINUSE: address already in use :::3000","timestamp":"2022-04-01T00:08:12.271Z"}
-{"level":"error","message":"Error server: Error: listen EADDRINUSE: address already in use :::3000","timestamp":"2022-04-01T00:08:22.853Z"}
-{"level":"error","message":"Error server: Error: listen EADDRINUSE: address already in use :::3000","timestamp":"2022-04-01T00:08:37.089Z"}
-{"level":"error","message":"Error server: Error: listen EADDRINUSE: address already in use :::3000","timestamp":"2022-04-01T00:09:05.143Z"}
-{"level":"error","message":"Error server: Error: listen EADDRINUSE: address already in use :::3000","timestamp":"2022-04-01T00:09:06.867Z"}
-{"level":"error","message":"Error server: Error: listen EADDRINUSE: address already in use :::3000","timestamp":"2022-04-01T00:09:15.730Z"}
-{"level":"error","message":"Error server: Error: listen EADDRINUSE: address already in use :::3000","timestamp":"2022-04-01T00:09:17.644Z"}
-{"level":"error","message":"Error server: Error: listen EADDRINUSE: address already in use :::3000","timestamp":"2022-04-01T00:09:48.102Z"}
-{"level":"error","message":"Error server: Error: listen EADDRINUSE: address already in use :::3000","timestamp":"2022-04-01T00:10:05.868Z"}
-{"level":"error","message":"Error server: Error: listen EADDRINUSE: address already in use :::3000","timestamp":"2022-04-01T00:10:45.285Z"}
-{"level":"error","message":"Error server: Error: listen EADDRINUSE: address already in use :::3000","timestamp":"2022-04-01T00:11:00.206Z"}
-{"level":"error","message":"Error server: Error: listen EADDRINUSE: address already in use :::3000","timestamp":"2022-04-01T00:11:05.429Z"}
-{"level":"error","message":"Error server: Error: listen EADDRINUSE: address already in use :::3000","timestamp":"2022-04-01T00:11:20.995Z"}
-{"level":"error","message":"Error server: Error: listen EADDRINUSE: address already in use :::3000","timestamp":"2022-04-01T00:11:30.010Z"}
-{"level":"error","message":"Error server: Error: listen EADDRINUSE: address already in use :::3000","timestamp":"2022-04-01T00:12:11.147Z"}
-{"level":"error","message":"Error server: Error: listen EADDRINUSE: address already in use :::3000","timestamp":"2022-04-01T00:12:15.256Z"}
-{"level":"error","message":"Error server: Error: listen EADDRINUSE: address already in use :::3000","timestamp":"2022-04-01T00:12:26.550Z"}
-{"level":"error","message":"Error server: Error: listen EADDRINUSE: address already in use :::3000","timestamp":"2022-04-01T00:12:55.033Z"}
-{"level":"error","message":"Error server: Error: listen EADDRINUSE: address already in use :::3000","timestamp":"2022-04-01T00:13:12.051Z"}
-{"level":"error","message":"Error server: Error: listen EADDRINUSE: address already in use :::3000","timestamp":"2022-04-01T00:13:26.109Z"}
-{"level":"error","message":"Error server: Error: listen EADDRINUSE: address already in use :::3000","timestamp":"2022-04-01T00:13:41.013Z"}
-{"level":"error","message":"Error server: Error: listen EADDRINUSE: address already in use :::3000","timestamp":"2022-04-01T00:14:45.455Z"}
-{"level":"error","message":"Error server: Error: listen EADDRINUSE: address already in use :::3000","timestamp":"2022-04-01T00:14:45.495Z"}
-{"level":"error","message":"Error server: Error: listen EADDRINUSE: address already in use :::3000","timestamp":"2022-04-01T00:14:53.385Z"}
-{"level":"error","message":"Error server: Error: listen EADDRINUSE: address already in use :::3000","timestamp":"2022-04-01T00:14:53.420Z"}
-{"level":"error","message":"Error server: Error: listen EADDRINUSE: address already in use :::3000","timestamp":"2022-04-01T00:15:43.078Z"}
-{"level":"error","message":"Error server: Error: listen EADDRINUSE: address already in use :::3000","timestamp":"2022-04-01T00:15:54.245Z"}
-{"level":"error","message":"Error server: Error: listen EADDRINUSE: address already in use :::3000","timestamp":"2022-04-01T00:16:03.442Z"}
-{"level":"error","message":"Error server: Error: listen EADDRINUSE: address already in use :::3000","timestamp":"2022-04-01T00:16:08.840Z"}
-{"level":"error","message":"Error server: Error: listen EADDRINUSE: address already in use :::3000","timestamp":"2022-04-01T00:19:39.731Z"}
-{"level":"error","message":"Error server: Error: listen EADDRINUSE: address already in use :::3000","timestamp":"2022-04-01T00:20:07.539Z"}
-{"level":"error","message":"Error server: Error: listen EADDRINUSE: address already in use :::3000","timestamp":"2022-04-01T00:20:07.574Z"}
-{"level":"error","message":"Error server: Error: listen EADDRINUSE: address already in use :::3000","timestamp":"2022-04-01T00:20:27.190Z"}
-{"level":"error","message":"Error server: Error: listen EADDRINUSE: address already in use :::3000","timestamp":"2022-04-01T00:20:37.079Z"}
-{"level":"error","message":"Error server: Error: listen EADDRINUSE: address already in use :::3000","timestamp":"2022-04-01T00:22:16.868Z"}
-{"level":"error","message":"Error server: Error: listen EADDRINUSE: address already in use :::3000","timestamp":"2022-04-01T00:23:26.380Z"}
-{"level":"error","message":"Error server: Error: listen EADDRINUSE: address already in use :::3000","timestamp":"2022-04-01T00:25:25.123Z"}
-{"level":"error","message":"Error server: Error: listen EADDRINUSE: address already in use :::3000","timestamp":"2022-04-01T00:26:52.087Z"}
-{"level":"error","message":"Error server: Error: listen EADDRINUSE: address already in use :::3000","timestamp":"2022-04-01T00:27:00.816Z"}
-{"level":"error","message":"Error server: Error: listen EADDRINUSE: address already in use :::3000","timestamp":"2022-04-01T00:27:27.421Z"}
-                                                                                                                                            {"level":"error","message":"Error server: Error: listen EADDRINUSE: address already in use :::3000","timestamp":"2022-04-04T22:59:17.083Z"}
-{"level":"error","message":"Cannot read property '_id' of null","timestamp":"2022-04-04T23:25:44.771Z"}
-{"level":"error","message":"Cannot read property '_id' of null","timestamp":"2022-04-04T23:26:54.791Z"}
-{"level":"error","message":"Cannot read property '_id' of null","timestamp":"2022-04-04T23:27:04.708Z"}
-{"level":"error","message":"Cart already exists for this user.","timestamp":"2022-04-04T23:39:33.995Z"}
-{"level":"error","message":"Cart already exists for this user.","timestamp":"2022-04-04T23:44:52.451Z"}
-{"level":"error","message":"Cart already exists for this user.","timestamp":"2022-04-04T23:52:16.057Z"}
-{"level":"error","message":"Non-existent product in cart.","timestamp":"2022-04-05T00:50:48.780Z"}
-{"level":"error","message":"Cannot read properties of null (reading '_id')","timestamp":"2022-04-05T14:47:30.101Z"}
-{"level":"error","message":"Cast to ObjectId failed for value \"624eec0d628b743949fee35a7\" (type string) at path \"_id\" for model \"Cart\"","timestamp":"2022-04-07T14:02:03.759Z"}
-{"level":"error","message":"User already exists.","timestamp":"2022-04-07T20:27:36.523Z"}
-{"level":"error","message":"User already exists.","timestamp":"2022-04-07T20:29:49.679Z"}
-{"level":"error","message":"User already exists.","timestamp":"2022-04-07T20:30:09.704Z"}
-{"level":"error","message":"User already exists.","timestamp":"2022-04-07T21:15:22.982Z"}
-{"level":"error","message":"User already exists.","timestamp":"2022-04-07T21:17:18.598Z"}
-{"level":"error","message":"User already exists.","timestamp":"2022-04-07T22:21:56.242Z"}
-{"level":"error","message":"User already exists.","timestamp":"2022-04-07T22:28:39.559Z"}
-{"level":"error","message":"User already exists.","timestamp":"2022-04-07T22:35:32.571Z"}
-{"level":"error","message":"User already exists.","timestamp":"2022-04-08T03:35:54.144Z"}
-{"level":"error","message":"Cast to ObjectId failed for value \"398483209\" (type string) at path \"_id\" for model \"User\"","timestamp":"2022-04-08T04:26:01.318Z"}
-{"level":"error","message":"User already exists.","timestamp":"2022-04-08T04:45:23.077Z"}
-{"level":"error","message":"User already exists.","timestamp":"2022-04-08T04:49:06.908Z"}
-{"level":"error","message":"User already exists.","timestamp":"2022-04-08T04:49:40.418Z"}
-{"level":"error","message":"User already exists.","timestamp":"2022-04-08T04:53:11.682Z"}
-{"level":"error","message":"User already exists.","timestamp":"2022-04-08T04:54:08.269Z"}
-{"level":"error","message":"User already exists.","timestamp":"2022-04-08T04:55:00.374Z"}
-{"level":"error","message":"Error server: Error: listen EADDRINUSE: address already in use :::3000","timestamp":"2022-04-08T05:07:25.493Z"}
-{"level":"error","message":"User already exists.","timestamp":"2022-04-08T05:07:33.563Z"}
-{"level":"error","message":"Cannot read properties of null (reading '_id')","timestamp":"2022-04-08T05:07:34.040Z"}
-{"level":"error","message":"User already exists.","timestamp":"2022-04-08T05:08:33.133Z"}
-{"level":"error","message":"User already exists.","timestamp":"2022-04-08T05:09:45.758Z"}
-{"level":"error","message":"Cannot read properties of null (reading '_id')","timestamp":"2022-04-08T05:10:12.455Z"}
-{"level":"error","message":"User already exists.","timestamp":"2022-04-08T05:18:42.244Z"}
-{"level":"error","message":"Cannot read properties of null (reading '_id')","timestamp":"2022-04-08T05:20:15.681Z"}
-{"level":"error","message":"Product already exists.","timestamp":"2022-04-08T05:20:16.149Z"}
-{"level":"error","message":"Cannot read properties of null (reading '_id')","timestamp":"2022-04-08T05:23:40.823Z"}
-{"level":"error","message":"User already exists.","timestamp":"2022-04-08T12:16:50.489Z"}
-{"level":"error","message":"User already exists.","timestamp":"2022-04-08T12:18:07.272Z"}
-{"level":"error","message":"Product already exists.","timestamp":"2022-04-08T12:18:07.727Z"}
-{"level":"error","message":"User already exists.","timestamp":"2022-04-08T12:24:07.310Z"}
-{"level":"error","message":"Cannot read properties of null (reading '_id')","timestamp":"2022-04-08T12:24:07.787Z"}
-{"level":"error","message":"User already exists.","timestamp":"2022-04-08T12:25:43.457Z"}
-{"level":"error","message":"Product already exists.","timestamp":"2022-04-08T12:25:43.920Z"}
-{"level":"error","message":"User already exists.","timestamp":"2022-04-08T12:30:26.858Z"}
-{"level":"error","message":"Product already exists.","timestamp":"2022-04-08T12:30:27.324Z"}
-{"level":"error","message":"Product already exists.","timestamp":"2022-04-08T12:30:27.887Z"}
-{"level":"error","message":"User already exists.","timestamp":"2022-04-08T12:32:21.788Z"}
-{"level":"error","message":"User already exists.","timestamp":"2022-04-08T12:33:21.163Z"}
-{"level":"error","message":"Product already exists.","timestamp":"2022-04-08T12:33:21.620Z"}
-{"level":"error","message":"Product already exists.","timestamp":"2022-04-08T12:33:22.177Z"}
-{"level":"error","message":"User already exists.","timestamp":"2022-04-08T12:34:08.524Z"}
-{"level":"error","message":"Product already exists.","timestamp":"2022-04-08T12:34:08.986Z"}
-{"level":"error","message":"Product already exists.","timestamp":"2022-04-08T12:34:55.974Z"}
-{"level":"error","message":"User already exists.","timestamp":"2022-04-08T12:46:53.703Z"}
-{"level":"error","message":"Product already exists.","timestamp":"2022-04-08T12:56:21.033Z"}
-{"level":"error","message":"User already exists.","timestamp":"2022-04-08T12:59:38.191Z"}
-{"level":"error","message":"Product already exists.","timestamp":"2022-04-08T12:59:38.968Z"}
-{"level":"error","message":"User already exists.","timestamp":"2022-04-08T13:02:07.634Z"}
-{"level":"error","message":"Product already exists.","timestamp":"2022-04-08T13:02:08.401Z"}
-{"level":"error","message":"Product already exists.","timestamp":"2022-04-08T13:03:02.788Z"}
-{"level":"error","message":"User already exists.","timestamp":"2022-04-08T13:16:37.121Z"}
-{"level":"error","message":"Product already exists.","timestamp":"2022-04-08T13:24:16.584Z"}
-{"level":"error","message":"User already exists.","timestamp":"2022-04-08T13:29:32.204Z"}
-{"level":"error","message":"Product already exists.","timestamp":"2022-04-08T13:29:32.660Z"}
-{"level":"error","message":"User already exists.","timestamp":"2022-04-08T13:31:50.871Z"}
-{"level":"error","message":"Product already exists.","timestamp":"2022-04-08T13:34:43.115Z"}
-{"level":"error","message":"Product already exists.","timestamp":"2022-04-08T13:50:22.818Z"}
-{"level":"error","message":"User already exists.","timestamp":"2022-04-08T14:22:12.775Z"}
-{"level":"error","message":"Non-existent product in cart.","timestamp":"2022-04-08T14:22:14.598Z"}
-{"level":"error","message":"Product already exists.","timestamp":"2022-04-08T14:24:39.756Z"}
-{"level":"error","message":"User already exists.","timestamp":"2022-04-08T14:27:55.039Z"}
-{"level":"error","message":"Product already exists.","timestamp":"2022-04-08T14:27:55.818Z"}
-{"level":"error","message":"Product already exists.","timestamp":"2022-04-08T14:27:56.763Z"}
-{"level":"error","message":"User already exists.","timestamp":"2022-04-08T15:44:51.420Z"}
-{"level":"error","message":"Product already exists.","timestamp":"2022-04-08T15:44:52.838Z"}
-{"level":"error","message":"Product already exists.","timestamp":"2022-04-08T15:44:53.014Z"}
-{"level":"error","message":"Product already exists.","timestamp":"2022-04-08T15:48:03.445Z"}
-{"level":"error","message":"Product already exists.","timestamp":"2022-04-08T15:48:03.620Z"}
-{"level":"error","message":"User already exists.","timestamp":"2022-04-08T15:48:30.781Z"}
-{"level":"error","message":"Product already exists.","timestamp":"2022-04-08T15:48:32.172Z"}
-{"level":"error","message":"User already exists.","timestamp":"2022-04-08T15:54:03.621Z"}
-{"level":"error","message":"Product already exists.","timestamp":"2022-04-08T15:54:04.605Z"}
-{"level":"error","message":"User already exists.","timestamp":"2022-04-08T15:58:15.571Z"}
-{"level":"error","message":"Product already exists.","timestamp":"2022-04-08T15:58:16.380Z"}
-{"level":"error","message":"Product already exists.","timestamp":"2022-04-08T17:27:24.938Z"}
-{"level":"error","message":"Product already exists.","timestamp":"2022-04-08T17:27:25.619Z"}
-{"level":"error","message":"Product already exists.","timestamp":"2022-04-08T17:27:25.805Z"}
-{"level":"error","message":"User already exists.","timestamp":"2022-04-08T17:28:44.962Z"}
-{"level":"error","message":"Product already exists.","timestamp":"2022-04-08T17:28:45.592Z"}
-{"level":"error","message":"Product already exists.","timestamp":"2022-04-08T17:28:45.916Z"}
-{"level":"error","message":"User already exists.","timestamp":"2022-04-08T17:34:51.061Z"}
-{"level":"error","message":"Product already exists.","timestamp":"2022-04-08T17:34:51.845Z"}
-{"level":"error","message":"Product already exists.","timestamp":"2022-04-08T17:34:52.364Z"}
-{"level":"error","message":"Cannot read properties of null (reading '_id')","timestamp":"2022-04-08T18:02:24.618Z"}
+{"level":"error","message":"this.dao.find is not a function","timestamp":"2022-04-11T04:59:41.860Z"}
+{"level":"error","message":"Cast to ObjectId failed for value \"{ email: 'carrerafranco421@gmail.com' }\" (type Object) at path \"_id\" for model \"User\"","timestamp":"2022-04-11T05:06:12.548Z"}
+{"level":"error","message":"Cannot read properties of undefined (reading '_id')","timestamp":"2022-04-11T17:06:47.622Z"}
+{"level":"error","message":"(intermediate value).then is not a function","timestamp":"2022-04-11T17:11:52.910Z"}
+{"level":"error","message":"Product already exists.","timestamp":"2022-04-11T17:13:16.853Z"}
+{"level":"error","message":"res.json(...).then is not a function","timestamp":"2022-04-11T17:13:57.099Z"}
+{"level":"error","message":"(intermediate value).then is not a function","timestamp":"2022-04-12T04:51:40.901Z"}
+{"level":"error","message":"(intermediate value).then is not a function","timestamp":"2022-04-12T04:53:12.086Z"}
+{"level":"error","message":"Cannot access 'product' before initialization","timestamp":"2022-04-12T04:55:48.685Z"}
+{"level":"error","message":"(intermediate value).then is not a function","timestamp":"2022-04-12T04:59:18.040Z"}
+{"level":"error","message":"Non-existent user.","timestamp":"2022-04-12T12:26:49.626Z"}
+{"level":"error","message":"Non-existent user.","timestamp":"2022-04-12T12:27:31.216Z"}
+{"level":"error","message":"Non-existent user.","timestamp":"2022-04-12T12:30:29.645Z"}
+{"level":"error","message":"Non-existent user.","timestamp":"2022-04-12T12:36:09.506Z"}
+{"level":"error","message":"Non-existent user.","timestamp":"2022-04-12T12:42:48.644Z"}
+{"level":"error","message":"Non-existent user.","timestamp":"2022-04-12T12:46:45.029Z"}
+{"level":"error","message":"Non-existent user.","timestamp":"2022-04-12T12:49:42.915Z"}
+{"level":"error","message":"Non-existent user.","timestamp":"2022-04-12T16:49:31.201Z"}
+{"level":"error","message":"Non-existent user.","timestamp":"2022-04-12T16:51:24.773Z"}
+{"level":"error","message":"Non-existent user.","timestamp":"2022-04-12T16:52:44.718Z"}
+{"level":"error","message":"Cast to ObjectId failed for value \"undefined\" (type string) at path \"_id\" for model \"User\"","timestamp":"2022-04-12T16:55:30.936Z"}
+{"level":"error","message":"Cast to ObjectId failed for value \"undefined\" (type string) at path \"_id\" for model \"User\"","timestamp":"2022-04-12T16:56:07.095Z"}
+{"level":"error","message":"Cast to ObjectId failed for value \"undefined\" (type string) at path \"_id\" for model \"User\"","timestamp":"2022-04-12T16:56:28.134Z"}
+{"level":"error","message":"Cast to ObjectId failed for value \"undefined\" (type string) at path \"_id\" for model \"User\"","timestamp":"2022-04-12T16:56:56.463Z"}
+{"level":"error","message":"Cast to ObjectId failed for value \"undefined\" (type string) at path \"_id\" for model \"User\"","timestamp":"2022-04-12T16:58:02.823Z"}
+{"level":"error","message":"Non-existent user.","timestamp":"2022-04-12T16:58:48.331Z"}
+{"level":"error","message":"Non-existent user.","timestamp":"2022-04-12T16:59:31.683Z"}
+{"level":"error","message":"Cast to ObjectId failed for value \"undefined\" (type string) at path \"_id\" for model \"Cart\"","timestamp":"2022-04-12T17:01:09.610Z"}
+{"level":"error","message":"Cast to ObjectId failed for value \"{\n  id: '6253c3018c7fa8df710d49c9',\n  first_name: 'Dante',\n  last_name: 'Muslera',\n  fullName: 'Dante Muslera',\n  email: 'dantemus@gmail.com',\n  username: 'dantemus@gmail.com',\n  phone: '541194738621',\n  address: 'Av Sidebal 2000',\n  age: 22\n}\" (type Object) at path \"_id\" for model \"User\"","timestamp":"2022-04-12T17:04:30.567Z"}
+{"level":"error","message":"Cast to ObjectId failed for value \"{\n  id: '6253c3018c7fa8df710d49c9',\n  first_name: 'Dante',\n  last_name: 'Muslera',\n  fullName: 'Dante Muslera',\n  email: 'dantemus@gmail.com',\n  username: 'dantemus@gmail.com',\n  phone: '541194738621',\n  address: 'Av Sidebal 2000',\n  age: 22\n}\" (type Object) at path \"_id\" for model \"User\"","timestamp":"2022-04-12T17:05:37.012Z"}
+{"level":"error","message":"Cast to ObjectId failed for value \"{\n  id: '6255b4764b23a216db11459c',\n  first_name: 'Roberto',\n  last_name: 'Cildañez',\n  fullName: 'Roberto Cildañez',\n  email: 'robercild@gmail.com',\n  username: 'robercild@gmail.com',\n  phone: '541167896543',\n  address: 'Av La vecindad 8000',\n  age: 24\n}\" (type Object) at path \"_id\" for model \"User\"","timestamp":"2022-04-12T17:19:20.317Z"}
+{"level":"error","message":"Non-existent user.","timestamp":"2022-04-12T17:22:58.145Z"}
+{"level":"error","message":"Non-existent user.","timestamp":"2022-04-12T17:30:13.505Z"}
+{"level":"error","message":"Non-existent user.","timestamp":"2022-04-12T17:33:10.818Z"}
+{"level":"error","message":"Non-existent user.","timestamp":"2022-04-12T22:56:45.350Z"}
+{"level":"error","message":"Non-existent user.","timestamp":"2022-04-12T23:08:40.762Z"}
+{"level":"error","message":"Cast to ObjectId failed for value \"6255084381cc04eb2cd982a2dae4a44\" (type string) at path \"_id\" for model \"Product\"","timestamp":"2022-04-13T02:05:58.853Z"}

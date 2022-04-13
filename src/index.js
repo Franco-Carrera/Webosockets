@@ -1,4 +1,6 @@
-import Server from './server.js'
-const server = new Server()
+import ServerApp from "./server.js";
+const server = new ServerApp();
 
-server.run()
+//const Server
+
+server.run();
