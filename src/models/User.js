@@ -1,26 +1,30 @@
-export default class User {
-  static get model() {
-    return "User";
-  }
+import mongoose from 'mongoose';
+let Schema = mongoose.Schema;
 
-  static get schema() {
-    return {
-      first_name: { type: String, required: true, trim: true },
-      last_name: { type: String, required: true, trim: true },
-      email: { type: String, required: true, unique: true, trim: true },
-      password: { type: String, required: true },
-      username: {
-        type: String,
-        required: true,
-        unique: true,
-        default: "anonymus",
-      },
-      phone: { type: String, required: true, trim: true },
-      address: { type: String, required: true },
-      age: { type: Number, required: true, trim: true },
-      avatar: { type: String },
-      role: { type: String, required: true },
-      //  cart: {type: Schema.Types.ObjectId, ref: "Cart"} entender concepto
-    };
-  }
+export default class User{
+    constructor(data){
+        this.data=data;
+    }
+    static get model(){
+        return "Users";
+    }
+    static get schema(){
+        return{
+            first_name:String,
+            last_name:String,
+            password:String,
+            role:String,
+            email:String,
+            status:{
+                type:Boolean,
+                default:true
+            },
+            cart:{
+                type:Schema.Types.ObjectId,
+                ref:"Carts"
+            },
+            phone:String,
+            profile_picture:String
+        }
+    }
 }

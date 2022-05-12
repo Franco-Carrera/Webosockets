@@ -1,17 +1,25 @@
-export default class Product {
-  static get model () {
-    return 'Product'
-  }
+import mongoose from 'mongoose';
+let Schema = mongoose.Schema;
 
-  static get schema () {
-    return {
-      name: { type: String, required: true },
-      description: { type: String, required: true },
-      category: { type: String, required: true },
-      code: { type: String, required: true, unique: true },
-      price: { type: Number, required: true },
-      stock: { type: Number, required: true },
-      picture: { type: String, required: true }
+export default class Product{
+    constructor(data){
+        this.data=data;
     }
-  }
+    static get model(){
+        return "Products";
+    }
+    static get schema(){
+        return{
+            title:String,
+            description:String,
+            price:Number,
+            code:String,
+            stock:Number,
+            thumbnail:String,
+            status:{
+                type:String,
+                default:"available"
+            }
+        }
+    }
 }

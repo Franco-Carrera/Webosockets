@@ -1,48 +1,20 @@
-import { __dirname } from "../utils.js";
-import { config } from "dotenv";
-config();
-
-export const PORT = process.env.PORT || 3000;
-export const PERSISTENCE = process.env.PERSISTENCE;
-export const ENVIRONMENT = process.env.ENVIRONMENT;
-
-export const SWAGGER = {
-  spec: {
-    definition: {
-      openapi: "3.0.0",
-      info: {
-        title: "Mutant API",
-        version: "1.0.0",
-      },
-      servers: [
-        {
-          url: `http://localhost:${PORT}`,
-        },
-      ],
-    },
-    apis: [`${__dirname}/routes/*.js`],
-  },
-};
-
-export const MONGO = {
-  URI_DEVELOPMENT: process.env.MONGO_URI_DEVELOPMENT || "",
-  URI_TESTER: process.env.MONGO_URI_TESTER || "",
-};
+import dotenv from "dotenv";
+dotenv.config();
 
 export default {
-  session: {
-    ADMIN: process.env.ADMIN,
-    PASSWORD: process.env.PASSWORD,
-    APP_PWD: process.env.MAILER_PWD,
+  mongo: {
+    url: process.env.MONGO_URI,
+  },
+  aws: {
+    access_key: process.env.AWS_ACCESS_KEY,
+    secret: process.env.AWS_SECRET,
   },
   jwt: {
-    SECRET: process.env.JWT_SECRET,
+    cookie_name: process.env.JWT_COOKIE_NAME,
+    secret: process.env.JWT_SECRET,
   },
-  twilio: {
-    CLIENT_SID: process.env.TWILIO_CLIENT_SID,
-    AUTH_TOKEN: process.env.TWILIO_AUTH_TOKEN,
-    PHONE_NUMBER: process.env.TWILIO_PHONE_NUMBER,
-    SANDBOX_WHATSAPP_NUMBER: process.env.TWILIO_SANDBOX_WHATSAPP_NUMBER,
-    PERSONAL_NUMBER: process.env.TWILIO_PERSONAL_NUMBER,
+  session: {
+    SUPERADMIN: process.env.SUPERADMIN,
+    SUPERADMIN_PASSWORD: process.env.SUPERADMIN_PASSWORD,
   },
 };

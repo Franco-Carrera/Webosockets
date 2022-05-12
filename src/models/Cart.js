@@ -1,14 +1,30 @@
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
+
+let Schema = mongoose.Schema;
 
 export default class Cart {
-  static get model () {
-    return 'Cart'
-  }
-
-  static get schema () {
-    return {
-      products: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Product' }],
-      user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', unique: true }
+    constructor(data){
+        this.data = data;
     }
-  }
+
+    static get model(){
+        return "Carts";
+    }
+
+    static get schema(){
+        return{
+            products:[
+                {
+                    product:{
+                        type:Schema.Types.ObjectId,
+                        ref:"Products"
+                    },
+                    quantity:{
+                        type:Number,
+                        default:1
+                    }
+                }
+            ]
+        }
+    }
 }
