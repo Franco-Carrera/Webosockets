@@ -12,12 +12,19 @@ export default class Dao {
         console.error(error);
         process.exit();
       });
+
+    const populateProducts = function (next) {
+      this.populate("products");
+      next();
+    };
+
     const timestamp = {
       timestamps: { createdAt: "created_at", updatedAt: "updated_at" },
     };
     const userSchema = mongoose.Schema(User.schema, timestamp);
     const productSchema = mongoose.Schema(Product.schema, timestamp);
     const cartSchema = mongoose.Schema(Cart.schema, timestamp);
+    cartSchema.pre("findOne", populateProducts);
     const messageSchema = mongoose.Schema(Message.schema, timestamp);
 
     this.models = {

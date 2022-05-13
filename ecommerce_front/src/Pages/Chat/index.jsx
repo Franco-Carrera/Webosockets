@@ -69,6 +69,7 @@ const Chat = () => {
                           <img
                             className="thumbnail"
                             src={usersConnected[key].thumbnail}
+                            alt="imguserConnected"
                           />
                         </div>
                         <div style={{ display: "inline-block" }}>
@@ -83,7 +84,6 @@ const Chat = () => {
         <div className="col2">
           <div
             style={{
-              padding: "0 5px 0 10px",
               display: "flex",
               height: "500px",
               flexDirection: "column",
@@ -97,6 +97,7 @@ const Chat = () => {
                       <img
                         className="thumbnail_chat"
                         src={message.author.profile_picture}
+                        alt="chatImg"
                       ></img>
                       <p>{message.content}</p>
                     </div>

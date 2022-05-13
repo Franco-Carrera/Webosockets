@@ -1,30 +1,32 @@
-import mongoose from 'mongoose';
-let Schema = mongoose.Schema;
+import mongoose from "mongoose";
+const { Schema } = mongoose;
 
-export default class User{
-    constructor(data){
-        this.data=data;
-    }
-    static get model(){
-        return "Users";
-    }
-    static get schema(){
-        return{
-            first_name:String,
-            last_name:String,
-            password:String,
-            role:String,
-            email:String,
-            status:{
-                type:Boolean,
-                default:true
-            },
-            cart:{
-                type:Schema.Types.ObjectId,
-                ref:"Carts"
-            },
-            phone:String,
-            profile_picture:String
-        }
-    }
+export default class User {
+  constructor(data) {
+    this.data = data;
+  }
+  static get model() {
+    return "Users";
+  }
+  static get schema() {
+    return {
+      first_name: { type: String, required: true },
+      last_name: { type: String, required: true },
+      email: { type: String, required: true, unique: true },
+      password: { type: String, required: true },
+      address: { type: String, required: false },
+      age: { type: Number, required: false },
+      phone: { type: String },
+      role: { type: String },
+      cart: {
+        type: Schema.Types.ObjectId,
+        ref: "Carts",
+      },
+      status: {
+        type: Boolean,
+        default: true,
+      },
+      profile_picture: String,
+    };
+  }
 }
